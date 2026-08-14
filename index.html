@@ -161,6 +161,46 @@ h2{font-weight:800;font-size:clamp(27px,3.4vw,43px);line-height:1.02;letter-spac
   letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);line-height:1.8;}
 .fineprint{margin-top:15px;font-size:11.5px;line-height:1.6;color:var(--ink-soft);}
 
+.cmp{width:100%;border-collapse:collapse;margin-top:22px;font-size:14px;
+  table-layout:fixed;}
+.cmp col.c1{width:40%;} .cmp col.c2{width:16%;} .cmp col.c3{width:24%;} .cmp col.c4{width:20%;}
+.cmp th{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-soft);font-weight:600;text-align:right;
+  padding:0 0 9px;border-bottom:2px solid var(--edge);transition:border-color .6s ease;}
+.cmp th:first-child{text-align:left;}
+.cmp td{padding:12px 0 12px 12px;border-bottom:1px solid rgba(128,128,128,.32);
+  text-align:right;vertical-align:top;font-variant-numeric:tabular-nums;line-height:1.35;}
+.cmp td:first-child{text-align:left;padding-left:0;padding-right:16px;}
+.cmp td b{display:block;font-weight:700;font-size:15px;}
+.cmp td s{display:block;font-size:11.5px;font-style:italic;color:var(--ink-soft);
+  text-decoration:none;margin-top:3px;}
+.cmp td i{display:block;font-size:12px;color:var(--ink-soft);margin-top:2px;}
+.cmp tr.me td{border-bottom:2px solid var(--edge);}
+.cmp tr.me td b{color:var(--accent);}
+.cmp caption{caption-side:bottom;text-align:left;margin-top:14px;font-size:12.5px;
+  font-style:italic;line-height:1.45;color:var(--ink-soft);}
+
+.faq{margin-top:14px;}
+.faq details{border-bottom:1px solid rgba(128,128,128,.32);}
+.faq summary{cursor:pointer;list-style:none;padding:14px 30px 14px 0;
+  font-weight:600;font-size:17px;line-height:1.3;position:relative;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:'+';font-family:'IBM Plex Mono',monospace;font-size:17px;
+  font-weight:400;color:var(--ink-soft);position:absolute;right:0;top:13px;}
+.faq details[open] summary::after{content:'\2212';}
+.faq details[open] summary{color:var(--accent);}
+.faq p{margin:0;padding:0 0 16px;font-size:15px;line-height:1.52;max-width:52ch;}
+
+.backed{margin-top:22px;font-size:13.5px;line-height:1.5;color:var(--ink-soft);}
+.backed a{font-weight:600;color:var(--ink);}
+@media (max-width:760px){
+  .cmp{font-size:12px;}
+  .cmp td b{font-size:13px;}
+  .cmp td s{font-size:10.5px;}
+  .cmp td{padding:10px 0 10px 8px;}
+  .faq summary{font-size:15.5px;}
+  .faq p{font-size:14px;}
+}
 .repo{display:inline-block;margin-top:20px;font-family:'IBM Plex Mono',monospace;
   font-size:14px;letter-spacing:.03em;font-weight:500;line-height:1.3;
   border:2px solid var(--edge);padding:12px 15px;box-shadow:6px 6px 0 var(--edge);
@@ -287,7 +327,7 @@ figure.fig figcaption b{font-style:normal;font-weight:700;color:#0E0E0E;
       <span class="key"></span>
       <div class="eyebrow"><span>One printed piece</span><span class="rev">Fig. 2 · Build</span></div>
       <h2>Nothing to assemble.</h2>
-      <p class="standfirst">Nanometre scale motion shouldn't cost a fortune.</p>
+      <p class="standfirst">We have said all along that nanometre-scale motion shouldn't cost a fortune. Here is the proof.</p>
       <div class="copy drop">
         <p>XY One is a complete XY positioning stage printed as <em>one single piece</em> of plastic. Nothing to align, nothing to grease, nothing to assemble. You lift it off the print bed, bolt on two motors, and it moves.</p>
       </div>
@@ -312,7 +352,7 @@ figure.fig figcaption b{font-style:normal;font-weight:700;color:#0E0E0E;
     <div class="inner"><div class="panel">
       <span class="key"></span>
       <div class="eyebrow"><span>Measured performance</span><span class="rev">Fig. 1 · Live</span></div>
-      <h2>Moves in Nanometers</h2>
+      <h2>And it really moves.</h2>
       <div class="copy">
         <p>Under optical tracking the stage resolves individual increments below 20 nanometres — roughly one four-thousandth the width of a human hair — against a measurement noise floor of 0.6 nanometres. The smallest increment it repeats dependably, move after move, is 210 nanometres. Both numbers belong to a machine built for the price of a good pair of shoes.</p>
       </div>
@@ -359,6 +399,57 @@ figure.fig figcaption b{font-style:normal;font-weight:700;color:#0E0E0E;
     </div></div>
   </section>
 
+  <section class="chapter" id="ch-compare" data-side="right">
+    <div class="inner"><div class="panel wide">
+      <span class="key"></span>
+      <div class="eyebrow"><span>Where it sits</span><span class="rev">Published datasheets</span></div>
+      <h2>Not the finest. The cheapest by three orders of magnitude.</h2>
+      <div class="copy">
+        <p>A piezo stage will out-resolve us by a factor of fifty. A bearing stage will out-travel us by a factor of four. Neither of them comes off a print bed for the price of lunch, and that is the whole argument.</p>
+      </div>
+
+      <table class="cmp">
+        <colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"></colgroup>
+        <thead>
+          <tr><th>Stage</th><th>Travel</th><th>Fine motion</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+          <tr class="me">
+            <td><b>F2R-XY-01</b><s>XY &middot; printed flexure + stepper</s></td>
+            <td>3 &times; 3 mm</td>
+            <td>&lt;20 nm<i>resolved; 210 nm repeatable</i></td>
+            <td>&#8377;1,500<i>&asymp; $15.60</i></td>
+          </tr>
+          <tr>
+            <td><b>Thorlabs NFL5DP20</b><s>X only &middot; steel flexure + 20 &micro;m piezo</s></td>
+            <td>5 mm<i>20 &micro;m piezo</i></td>
+            <td>20 nm<i>open loop; 10 nm on the &minus;S</i></td>
+            <td>&asymp; $945<i>+ driver</i></td>
+          </tr>
+          <tr>
+            <td><b>Newport 9062-XY-NP-M</b><s>XY &middot; gothic-arch bearings, Picomotor on Y, micrometer on X</s></td>
+            <td>12.7 mm</td>
+            <td>&lt;30 nm<i>min. incremental motion, Picomotor axis</i></td>
+            <td>On request</td>
+          </tr>
+          <tr>
+            <td><b>Newport NPXY100</b><s>XY &middot; piezo + flexure</s></td>
+            <td>100 &micro;m</td>
+            <td>0.2 nm<i>open loop</i></td>
+            <td>&asymp; &pound;3,854<i>+ amplifier</i></td>
+          </tr>
+          <tr>
+            <td><b>Newport NPXY200SG</b><s>XY &middot; piezo + flexure + strain gauge</s></td>
+            <td>200 &micro;m<i>160 &micro;m closed</i></td>
+            <td>4 nm<i>closed loop; 0.4 nm open</i></td>
+            <td>&asymp; &pound;6,577<i>+ amplifier</i></td>
+          </tr>
+        </tbody>
+        <caption>Figures from manufacturer datasheets, checked August 2026. Not a like-for-like comparison: the piezo stages resolve far finer than we do, but only across a hundred microns, and every stage listed here needs a controller or amplifier that is priced separately. Prices are indicative list, before tax and shipping.</caption>
+      </table>
+    </div></div>
+  </section>
+
   <section class="chapter" id="ch-cost" data-side="left">
     <div class="inner"><div class="panel">
       <span class="key"></span>
@@ -381,16 +472,53 @@ figure.fig figcaption b{font-style:normal;font-weight:700;color:#0E0E0E;
       <h2>From a simple microscope to a nanometre-scale stage</h2>
       <div class="copy">
         <p>The XY stage began as a low-cost microscope for teaching and research. It grew into something more ambitious: an instrument precise enough for photonics, metrology and micro-fabrication, yet cheap enough to sit on a school bench.</p>
-        <p>It is our first step towards putting deep tech instruments within reach of the people who need them.</p>
+        <p>And no, it is not a toy. It is our first step towards putting deep-tech instruments within reach of the people who need them.</p>
       </div>
     </div></div>
   </section>
 
-  <section class="chapter" id="ch-open" data-side="left">
+  <section class="chapter" id="ch-faq" data-side="left">
+    <div class="inner"><div class="panel wide">
+      <span class="key"></span>
+      <div class="eyebrow"><span>Questions</span><span class="rev">Ask us more</span></div>
+      <h2>The things people ask.</h2>
+
+      <div class="faq">
+        <details open>
+          <summary>How can a 3D print position to 20 nanometres?</summary>
+          <p>Because nothing slides. The stage moves by bending 0.5 mm blades of plastic, and a blade under load deflects by an amount set by its geometry, not by its surface finish. Layer lines and printer tolerance would wreck a sliding bearing; they barely matter to a flexure. Precision moves from the machine shop into the CAD file, and CAD is free.</p>
+        </details>
+        <details>
+          <summary>What is the difference between resolved and repeatable?</summary>
+          <p>Resolved means we can see the stage make a move that small: individual increments below 20 nm show up cleanly above a 0.6 nm measurement noise floor. Repeatable means you can ask for that increment and get it every time. Today that number is 210 nm. The gap between the two is honest work still to be done, and it is why both numbers are on this page.</p>
+        </details>
+        <details>
+          <summary>How far does it travel?</summary>
+          <p>About 3 mm on each axis. That is the trade a flexure makes: the blades have a finite elastic range, and pushing past it costs you linearity long before it costs you the part. If you need centimetres, you want a bearing stage.</p>
+        </details>
+        <details>
+          <summary>How was it measured?</summary>
+          <p>Video tracking. A marker on the slide holder, filmed at 20 fps and tracked frame by frame against a calibrated scale, with sub-pixel centroid fitting. Independent interferometric validation is the next step, and until that is done every figure here should be read as tracker-derived.</p>
+        </details>
+        <details>
+          <summary>What do I need to build one?</summary>
+          <p>A printer that can hold a 0.5 mm wall cleanly, two small stepper motors with drivers, a microcontroller, and the screws and lead screws in the bill of materials. Print, bolt on the motors, flash the firmware. There is no assembly step in between, because there is nothing to assemble.</p>
+        </details>
+        <details>
+          <summary>Can I buy one instead of printing it?</summary>
+          <p>Not yet, but tell us what you need it for. Pre-orders, pilot builds and collaborations all go to the same inbox, and a human answers.</p>
+        </details>
+      </div>
+
+      <p class="figcap">Something not answered here? Send it over &mdash; this list grows from real questions.</p>
+    </div></div>
+  </section>
+
+  <section class="chapter" id="ch-open" data-side="right">
     <div class="inner"><div class="panel wide">
       <span class="key"></span>
       <div class="eyebrow"><span>Open source</span><span class="rev">Public repository</span></div>
-      <h2>Files</h2>
+      <h2>Take the files.</h2>
       <div class="copy">
         <p>XY One is open source. The repository below is where the project lives, and it fills out as each part of the build is cleaned up and documented. Clone it, print it, drive it past where we stopped &mdash; and tell us what breaks.</p>
       </div>
@@ -403,7 +531,7 @@ figure.fig figcaption b{font-style:normal;font-weight:700;color:#0E0E0E;
     <div class="inner"><div class="panel wide">
       <span class="key"></span>
       <div class="eyebrow"><span>Distribution for reality</span><span class="rev">Replies from a human</span></div>
-      <h2>Contact us</h2>
+      <h2>Test drive the F²R stage.</h2>
       <div class="copy">
         <p>Collaborations, pre-orders, questions about the characterisation, or an application we haven't thought of. A human reads every message, and answers quickly.</p>
       </div>
@@ -412,13 +540,16 @@ figure.fig figcaption b{font-style:normal;font-weight:700;color:#0E0E0E;
         <a href="tel:+918109285020">+91&nbsp;81092&nbsp;85020</a><br>
         <a href="https://github.com/atharvdubey22ug-glitch/XY-Stage-files" target="_blank" rel="noopener">github.com/atharvdubey22ug-glitch/XY-Stage-files</a>
       </p>
+      <p class="backed">Supported by an equity-free grant from
+        <a href="https://www.3f.vc/" target="_blank" rel="noopener">3F VC</a>,
+        the Frugal Founder&rsquo;s Fund.</p>
       <div class="adbar">
         <span class="lockup"><span class="cbar" aria-hidden="true"></span>F²R&nbsp;fiction&nbsp;to&nbsp;reality</span>
         <div class="dist">F²R instrumentation<br>atharvdubey.nj@gmail.com · Tel. +91 81092 85020<br>F2R-XY-01</div>
       </div>
       <p class="fineprint">
-        © 2026 Atharv Dubey. Datasheet Rev. 01 · Monolithic XY Stage / F2R-XY-01.
-        XY stage data and figures are obtained by video tracking characterisation and may vary between builds.
+        © 2026 F²R — Fiction to Reality. Datasheet Rev. 01 · Monolithic XY Stage / F2R-XY-01.
+        F²R figures obtained by video-tracking characterisation and may vary between builds.
       </p>
     </div></div>
   </section>
@@ -457,7 +588,9 @@ const MOVE_MAX   = 3.5;
 const PRINT_SECS = 2.9;
 const MODEL_TOP  = 40.7;
 
-const STRIPES = ['#0E0E0E','#61BB46','#FDB827','#F5821F','#00A0B0','#E03A3E','#963D97','#0E0E0E','#009DDC'];
+const RAINBOW = ['#61BB46','#FDB827','#F5821F','#00A0B0','#E03A3E','#963D97','#009DDC'];
+const STRIPES = ['#0E0E0E','#61BB46','#FDB827','#F5821F','#00A0B0','#963D97','#E03A3E',
+                '#009DDC','#61BB46','#0E0E0E','#F5821F'];
 const PAPER = new THREE.Color('#FCFBF7');
 const NAVY  = new THREE.Color('#0B0F16');
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -468,9 +601,11 @@ const CH = [
   { el:'ch-flex',    label:'Flexures',  cam:[57.7, 27,25.6], look:[47.3,15,7.6],pan: 1, dark:0.20, ghost:0.7, move:1,   motors:1, seek:false, spin:0.006 },
   { el:'ch-motion',  label:'Metrology', cam:[   0,288,   7], look:[  0, 8,  0], pan:-1, dark:1,    ghost:1,   move:1,   motors:1, seek:true,  spin:0.000 },
   { el:'ch-data',    label:'Data',      cam:[-158, 96, 150], look:[  0,14,  0], pan: 1, dark:0.18, ghost:0.4, move:1,   motors:1, seek:false, spin:0.012 },
+  { el:'ch-compare', label:'Compare',   cam:[  96,214, 138], look:[  0,10,  0], pan:-1, dark:0.10, ghost:0,   move:0,   motors:1, seek:false, spin:0.018 },
   { el:'ch-cost',    label:'Cost',      cam:[ 152, 64, 178], look:[  0,16,  0], pan: 1, dark:0,    ghost:0,   move:0,   motors:1, seek:false, spin:0.030 },
   { el:'ch-story',   label:'Origin',    cam:[-218, 92,-178], look:[  0,14,  0], pan:-1, dark:0.12, ghost:0,   move:0,   motors:1, seek:false, spin:0.030 },
-  { el:'ch-open',    label:'Source',    cam:[-146,118, 132], look:[  0,13,  0], pan: 1, dark:0.85, ghost:0,   move:0,   motors:1, seek:false, spin:0.026 },
+  { el:'ch-faq',     label:'FAQ',       cam:[-104, 58,-152], look:[  0,13,  0], pan: 1, dark:0.30, ghost:0,   move:0,   motors:1, seek:false, spin:0.020 },
+  { el:'ch-open',    label:'Source',    cam:[-146,118, 132], look:[  0,13,  0], pan:-1, dark:0.85, ghost:0,   move:0,   motors:1, seek:false, spin:0.026 },
   { el:'ch-contact', label:'Contact',   cam:[  32,132, 352], look:[  0,15,  0], pan: 0, dark:1,    ghost:0,   move:0,   motors:1, seek:false, spin:0.050 }
 ];
 const PRINT_CH = 1;
@@ -611,8 +746,8 @@ const railBtns = Array.from(rail.children);
 document.querySelectorAll('.chapter').forEach((sec,i) => {
   const k = sec.querySelector('.key'); if (!k) return;
   if (i === 0){
-    const st = STRIPES.slice(1).filter(c => c !== '#0E0E0E'), w = 100/st.length;
-    k.style.background = 'linear-gradient(90deg,'+st.map((c,j) =>
+    const w = 100/RAINBOW.length;
+    k.style.background = 'linear-gradient(90deg,'+RAINBOW.map((c,j) =>
       c+' '+(j*w)+'% '+((j+1)*w)+'%').join(',')+')';
     k.style.height = '10px';
   } else k.style.background = STRIPES[i];
@@ -838,4 +973,3 @@ document.getElementById('boot').addEventListener('click', function(){ this.class
 </script>
 </body>
 </html>
-
