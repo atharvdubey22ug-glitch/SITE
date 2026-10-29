@@ -316,6 +316,10 @@ body[data-theme="dark"] .repo.buy{color:#080C13;}
   #mark .xlink a{font-size:9px;padding:3px 5px;}
   #readout{bottom:calc(14px + env(safe-area-inset-bottom,0px));}
 }
+/* ---- AN-02 fibre to chip ---- */
+figure.fig.scope{padding:9px;background:#FFFFFF;}
+figure.fig.scope canvas{display:block;width:100%;aspect-ratio:1/0.85;background:#0B0F16;}
+@media (max-width:760px){ figure.fig.scope{padding:6px;} }
 </style>
 </head>
 <body data-theme="light">
@@ -326,7 +330,7 @@ body[data-theme="dark"] .repo.buy{color:#080C13;}
 
 <div id="mark" class="chrome">
   <a href="#top" aria-label="F²R — Fiction to Reality"><span class="chip"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUEAAACUCAYAAAANipsZAAAkrUlEQVR4nO3deVyU1f4H8M8swMAwbLIFoohgCIIiIgLCAALihktZ5lZaal4VMy0rARGKxH0pc7l5fxnpLZXQxAVFCXBBkUVEEVAREIFRdhi2GX5/GF4XEAbPLMB5v168FJj5POel8J0zz3Oe72EAaAFFUVQvxZT3ACiKouSJFkGKono19vOf6OnpobS0VF5jUWhcLhfbtm3D/Pnz8dvxy/IeTrveGzcCeXl5SExMxIULF3Djxg08ePAAVVVV8h5am4yMjGBnZwc/Pz+MHTsWGq7e8h6STFQlnEVoaCiOHz8OgUAg7+EQwWazoaenhz59+sDExAQ2NjawtbWFtbU1jI2NoaurC2aIlbyHCQRngcFgPPuUgefOCba00NODrzN16lTs3LkT56/lyXsor/B1GYTr16/jzJkzuHDhAvLz81FeXi7vYXWahoYGHBwcMHPmTEyaNAlsexd5D0lq1HIysG7dOmzatAlNTU3yHo7UcDgcqKmpQUtLC2+//TZGjx4NNzc32NraQnOro/wG9lIRZL/modRLkpOTUVhYKO9hvMDF9i3ExcVh2bKdSEhIQHFxMcRisbyHJbHWmSqPx0NMTAzm7t4GT09PCAfZynlk5KWlpeHo0aM9ugACQH19/QufKykpwdTUFE5OTnBzWwUXFxcM/n2qnEb3P7QISkAgEPwzu+LJeyjwcjTDiRMnsHhxCJKSklBZWSnvIRFRXV0NADAxMcGsWbPwyYVT0PEYJ+dRkZWSkoK8vDx5D0Pmni/6PB4Ptra2GDVqAnx8fDB69GhwN9rLZVy0CEqgpaUFdXV1AFN+RXDKGFucOHECixaF4+LFiygrK5PbWKSpoKAAHA4HV69exdLt4fDz80PVgMHyHtYb4+bexP2AgG45Wyep9cWOzWYjMjISvr6++OST32D/1yyZj4UWQQnV1dVhzmwX/Bp1UebHtu6nii+++AJRUVEoKSmR+fFlrfXt1IABA1BcXIz5ORmos7CR86jeTENDAwQCAZqbm+U9FIXQ+u/AYrFw9epVzJ69CDNmzMBbezxkNgZaBCUgFoshFApl/ir+7tjh+O2337Ag9Cekp6dDJBLJ9Pjydv/+fRgaGqK6uhqLM6+j2Vo+b5tIaGpqQk1NjbyHoXBaf6bV1NRw6dIlzJ+/FR4eHuCsHyb1Y9MiKAEGgwEWi/XClSVpcx1mjODgYPzyyy+9YvbXnuLiYmhra0MoFGLV7VQ0DraT95C6rLe/FX6duro6AICpqSlmz56NpUvjYLjbXarHpEVQAgwGA2pqaog4dkkmx7Mx5WLVqlU4efIkhEKhTI6pyMrLy6GjowMulwv/3JuoNR8i7yFRUpKXlwc1NTUIBAKsWRODfvt9pHYsWgQlpKamhkoZvJA72xhi+fLliI6Olv7BupGysjIYGhqCx+NhHi2EPVpdXR2UlZVRWVmJNWsOw+bodKkchxZBCXC5XGhqaqJSymuQP5joiE2bNuHs2bPSPVA3VVxcDFNTU+jr62NqfjbK+w2S95AoKWlsbASTyURZWRmCgv6N0ec+IX4MWgQlMGjQIBgYGCC//IlUj3Pv3j0cP34cjY2NUj1Od5aXlwc+nw9LS0sYynswlFS1nkN1cHBAcPBmjB8/Hox15JZL0QYKEvDw8ICJiYnUj5Obm4tbt25J/TidwWazweFwwOVyweFwwGQqzo9MYmIidu3aBcaNq/IeCiUD165dQ2hoKNLT04nm0plgJ/n6+mLjxo2IPJsm9WPl5eW9csuRNCkpKcHIyAhGRkbQ1NSEuro6NDQ0oKGhga+//hoaGhrgcDioq6tDeXk5Fi9ejMrKSlRWVuLJkycoKCjAw4cPZTbeViKRCDo6OnB0dMQEmR9dMSgrK6O5uRlisfjZCxSDwXj20ZnPW1paIBaLX/lQRFeuXMGCBQvw/feJ0P1hNJFMog0UzMzMYGZmBjZb8Wrr8z8AL3/t5cc9/8OhrKyMQYMGYfr06cjMl/4V2ll+TggLC0NoaKhU3w73798f5ubmMDc3h6WlJSwtLTFo0CDo6+uDzWaDwWCAyWS+8KdYLH72C9PS0oLm5mYUFxfj5s2bSEtLQ0ZGBjIzM5GTkyPTtYxjx47F7t27oekmvSuIpLSkPf0ljoyMJJLn6ekJT09PqKioQCwWv/D/9bqP5x8jFoshEokgEokgFovR3NyMhoYG1NTUoKam5tmLn0AggEAgwKNHj57d8SEPPB4PAQEB8Pf3h2p4F5ZKSbOBgo+PD5YtWwZ1dXWFW9DbVhF83ecMBgMtLS1QUlKCvr6+zNpnicViNDQ0SKWjj4GBAUaNGgU+n4+ff/4Z/fv3R9++fXH49HUI6gHBjUcAHnUhWRdmQ73w6aef4t69e0hKSoKjoyOSk5Nl8nNw4cIFHDp0CF/cu4VqMwVo1SRDQ4YMwWeffYah5z+QSn72hCjU1dWhqqoKZWVlz4rhxo0bkZWVhfT0dNy+fRu1tbVSOX5bqqur0a9fP1haWmIygTyiRbBPnz6wsLDAf6N72jmauzI7klgsRlNTE7EiyOPxYG5uDi8vLxw4cABWVlYwMjLCb8cvo+hmCXCT3ALsmMu5AAB/f3/4+Pjg+PHjsLGxQVZWllQ7pjQ2NmLEiBGYOHEi+krtKIpLmov3B0VPefWLSkDOymMoKytDSUkJbt68iSVLliAxMRH37t2TySwxPz8fY8aMwds/RsHyv22MUQJEi2DrtJrqOlJ3pejp6cHJyQlbtmwBn8+HsbExjsakoiT5AYAHZAbbjtZZ88qVKzFhwgQcOHAAWlpaqKiokNox09LSEBcXh3/dv90jGi10VktLi1x+5yxOPDcHUwXS1h9EUVER4uPj4ePjg4SEBKkv8I+Pj0dERAQCA9Oh8v3QLucQP3lHG7O+GRaLBQ6H0+UiaGxsDHd3d+zcuRPu7u6IuZyLK5mlQKbsO4a3viMICgqCoaEhDA0NUVxcLJVjNTc3w9vbG35+ftCQyhGo1xl2YebTvxgA5/ftQ2RkJFxcXJCUlCS1ZhFNTU2wtbXF9OnT0fUSSK8OK5zfjl8Gj8eTuAjq6elhwoQJ2L17N0aNGoVTiXeevT2Vt6jYG1iyZAm0tbVhaWmJrKwsqRwnKSkJycnJeIcuoJYrz/SlyP3sOHx8fLBr1y5wuVypnTPMyspCdHQ0hgRmghVq3aUMWgQVUJ8+fTpdBFVVVcHn87Fjxw54eXnhVOIdnEq8I+URSu7w6ev46KOPoKOjAwsLC+Tk5BA/RlVVFZYuXQpfX1/i2ZRkzP/yAwBcXvszDAwMpPYuoLGxES4uLnjnnXfwdhczaBFUQLq6ulBWVu7wcdbW1ggJCcGMGTPQt29fufQ4lMRvxy9j5qRJePjwIXR0dKTSEPbKlSsoKSmBNvFkqiucrnyMGyv/i759+8LU1FQqHbXT0tIQExMDi6BbXdrIiRZBBaSnpwcjI6PXfn/atGnYv38/hg8fjkMnkoBk6V7sIOXgX1fw4YcfIi8vD6qqqsRPnt+7dw/Xr1/HdPqWWGHYxs5A1pxIVFRUPL33nvBWELW1tfD19cXEiRMxoAvPp0VQAQ0cOBAjR4585etsNhtjxozBDz/8AC8vL0TH38adoiQ5jPDN/HkuHcuWLcPt27eJZ1dUVCA1NRXTpk0jnk11neWpaUiedwCFhYVQU1N71jeQlJSUFGRmZnapCCrOjaDUMyf+voWPP/4YLi4u4HK50NLSgr29PcLCwrBz5040KBsjOp58AZGlv1MK8Mknn6BvX7Ir+8RiMbKzs2V62yHVOSMS5sLf3x98Pp94dmlpKbKzsyEOkvyeezoTVFCurq7YuXMnLl68CE1NTdjb2/e4heg+Pj5wc3MDk8kkeq9qfn4+CgoKYEAskSJlzI1lCJoxA9ra2sT3xc7MzERZWRl0JXwenQkqqIhjl3DzQR2WLFkC8MxwPbu8RxVAADgak4qZM2fC0JBsMyyBQIAHD7rHOdLeaOzYsVKZDd68eRMCgUDi59EiqOBk1cpfXlxdXeHu7k40s6KiQmqLsqk353J1ASZNmgQdHR2iudnZ2SgsLJT4ebQIUnJ17HwGvL29oaamRiyzuroajx8/JpZHkefu7g5r664tbm5PZWUlbty4gcZvbkj0PFoEKbkbMmQITE1NieWJRCKUlpZC64HiLRqnnvLJ/AyOjo6dWg/bWWKxGLdv35b4yjMtgpTc9e/fH0OGkN0wqaKigm5PoOBcXV2Jnw9+/PixxB2LaBGk5E5PTw/Dhg0j2rpfKBSioaGBWB5Fnq2tLfT19YlmVlZWStywgRZBSu5+jboIc3Nz9OnTh1hmQ0MDLYIKzsDAAAYGZBcy0SJIdVtaWlrQ0CDXBKuhoYG+HVZwKioqMDMzg5KSErHM6upqif/faRGkFAKXyyV6hZj2tVR8g6KnwNTUFBwOh1hmY2MjqqqqJHoOLYKUQlBXVydaBJWVlRVywy/qRTo6OkRngk1NTRJ3MKdFkFIIpIugiooK0eUXlHTweDywWCxiec3NzaipqZHoObQIUgqBzWYTnREoKysTzaOkQ1NTk+iMnclkSpxHiyClEEhfyFBWVqYzwW5ATU2N6EyQzWZLfIGNFkFKIQiFQqINVulMsHuor68n2kGIzWaDx+NJ9BxaBCmFUF9fT3Rdn7KyMir6d3XXCUpWysrKiL8DUFdXl+g5tAhSCoFkEWQymcQ7lFDS8eTJE6JbcnK5XInfAdAiSCmEyspKia/qtYfL5RK/HYuSjvLycqJFUENDg14YobongUBAbPc5LS0t4jfmU+TlTjqOx48fE307rKOjQ4sg1T2VlJQQ26BbQ0ODzgS7AaFQiJycHKJF0MLCQuL1prQIUnL3/ngHop2gNTU1id+YT5GXnZ2N+/fvE8tTVlbG0KFDaRGkup+KigqUlJQQy9PR0aEXRrqBtLQ0ov/v+vr6MDc3B2PdYImeR4sgJXdlZWVEN0YyMjKCiooKsTxKOtLS0vDkyRNieYMHD4aenp7Ez6NFkJK7+/fvIycnh0iWiooKBg4cSJsnKLjzQ39AWloaRCIRsUwrKyvo6kq64SYtgpSczfJzQmpqqsTtj9rD4/EwePBgVJpaEsmjyMuZeAwnTpxAamoqsUxlZWVYW1tDY8tIiZ9LiyAlV5WVlUhOTpZ4X4j29OnTBxYWFkSyKOm4ffs2fv31V1RWVhLLHDJkCEaMGNGl59IiSMlVQUEBMjMzieVZWVl16bwQJRt3xv+J33//HSkpKURzfXx8YGVl1aXn0iJIyVV6ejoEAgGRLCaTCRcXF6Jt+imyzp8/j4MHDxJdG2hmZgZfX19w1g/r0vNpEaTk5v3xDoiPj0d1dTWRPD09PTg4OKBmINlNvSkyjpl9j/DwcOTm5hLN5fP5XX4rDNAiSMlReno6Ll++TOzeUXt7e6KbuFPk/D38J4SFheHvv/8mmqupqYlJkyZBfRMtglQ3dPr0ady7d49YnoeHB4yNjYnlUWRcHvUzwsPD8eeffxJtlgAAfn5+cHV1faMMWgQpuXAdZowLFy4Qa6Q6cOBAjBw5ElUDJLtbgJKu6EEbsXbtWvzyyy9Em+YCgIODA5YtWwa9H9+sCNIVpZRcxMfHIz09nViek5MThgwZQiyPejO3fY8iKioKCxcuRFJSEtGGucDTTkFbt259ei7w5Jtl0ZkgJXOT3K0RExNDrHWWuro6+Hw+GMNGEcmj3sw5mx1Yv349Vq1ahfj4eOIFkM1mY86cOZg8eTKYIV1bFvNCHoExUZRErly5gri4OGJ5dnZ28PT0BEI2EMukJJMz8RhycnJw5swZLNy5EJcuXSLWGu1lnp6eWLZsGXR2OBPJo0WQkqmpXkOxYsUKPHr0iEiekpISvv32W5iamoLc/QdUZ6XwI3Dr1i0EBAQgNjYWWVlZRO8EeZmjoyPCw8Mx6KAfsUxaBCmZio+Px+nTp4ntMGZpaYnx48f32nuFmUymTHfVS+FHoKioCIWFhbhz5w78/f2RkJCAoqIi1NfXS/XY9vb2CAsLg5ubGxBHLpdoEZT1fwjVvfh5DMGSJUuIzQIBYOrUqbCwsEAdscTupaqqCg8ePECiw160tLSAwWCAwWB0KUssFqOhoQFCofDZn60bYFVWVuLBgwdYEbUCWVlZuHv3LioqKtDU1ER0y8z2DB06FN9//z28vb2JnAd8HtEiWF1djaKiIkzkW8nkH0YaWlpawGazweVy8d/oq/IeTo9y8uRJxMbGEmufNHToUOzfvx91FjZE8rqj8+fPIz8//4WN5rtaCEUiEZqamlBfX4/GxkY0NDSgoaEBjY2NqK6uRkVFBfF1fp0xdOhQhIaGYty4cRI3TO0MBoCW1k9aWlpe89CO9e3bF8bGxt26l9vFixflPQSKovD0KvC4cePw+eefw83NDaxQQrdDBme98CJBtAhSFEWRoKOjg7lz52Lp0qUwj5hINvylIth9p2wURfVIw4YNQ3h4ON59911ob3eS+vFoEeyAkZERjh49CudcM3kPpVsqn6SCxYsX49ChQ8Qyp02bhh07dsDkQve7CPd4PBsLFixAZGSkvIeicLS1tTFu3Dj8+OOPcHZ2lsr5v7bQItgBoVD4zyZAtAhKSjRLD7t27cKZM2eIZRoaGmLv3r3dsgBSbVNXV4eLiwv27NkDPp8Pg5/4wFnZHZ8WwQ40NjZCIBBAtEQPrN/INP/sLa5du4Z9+/YRuz2OyWTi888/h7u7O3CM7M34lOwpKyvD3t4eGzZswMSJE9Fvvw9wS/bjoEWwAyKRCPX19fSikYSeTFDC6tX/Jto6387ODrNnz4YmLYDdmpKSEhwdHRESEgI/Pz9YWloSX/snCVoEKeKaZ+pi+/btOHLkCLF1Zdra2ti4cSNsbGyAjMdEMinZYTKZ0NTUBJ/Px549e+Dk5AQLCwuwv5V/5x9aBCniEhISsG/fPpSXlxPLnDx5MqZOnQr2QVoAuxsej4dFixbh/fffx6BBg2C01xPIl/eo/oe20uoE+la48x7wG7Bt2zbcuXOHWObw4cOxaNEi6J6U/d0K1JtTU1ODiYkJ3n777acFUMHQItgBFosFDofT5fsxe5PqqVxs27aNaIMEHo+HxYsXw9HRkUievPXGF1SBQIDw8HB8/PHH+K9lMKpXXpP3kF5A3w53QEVFBW+99Ra9MtwJhw8fRkREBNFuIu+88w4mT55M//27sedfEA0MDJCYmIglS/7E4N+nynFU/0OLYAf09fWftm1PlvdIFNvf/e9g+fIdKC0tJZbp5uaG7du3w+BM75s99VQlJSVgs9nIzs7G6tU/wtPTU2aLottDi2AHsrKyAAAtdP+eDhggNTWVWJqRkRF27dqF4TeNiGVSiqF1xYC1tTW++uorzFiTAaXv5NcJiBZBSiEVFRUBeK67Rw9C8pY5CwsLWFtbQ0lJqcPzjUwmE0wmE2KxGLW1taitrUVNTc2zj/Lycqm1xG9LZmYmTE1NUVNTgw+/TIHahuEyO/bziBZBZWVlsNnsTl1EePkxL/dAa+vv7f3Z0fc6+30Gg4GHDx92OHaKUhTu7u5YvXo1tLS0OuzTyGQywWAwIBaLIRQKUVdX9+xDKBSisrISISEhSE5ORkpKCkpKStDU1CTV8efl5cHAwAB1dXVYLKdCSLQIvvfee5gzZw7U1NQ6vDrYVqFsr3i2V9Akyeps9pUrV8BisaCrqwsTExMoHXrS5vN6O/Fsffz6668IDAz8595qSh7U1dVhZGSEiMJadG6xRwuedtBTA1hqAA9PP/7x5aRJKC0tRUFBATIyMjBnzhxcuHABhYWFUhk/8PQ8oZGREfT19TFHakdpH9EiOGDAAHh5efWgBa20ALbnr7/+wvr164kWQGNjY2zduhXTp09HxaZGYrmKRDSvGgsXLiT2llgsFhPr1A0AB/KrAagCeoOwYMEovPfee0hOTsb8+fMRExMjtWJYVFQEGxsbGG37EWMSlkjlGO0hWgRFIhHxPUYpxRNvmo2VK7/FrVvk7nbX0dFBYGAgJk2a1GMLoDRIc/3qz3f/aXxhaofNmx2QkJCAWbNm4fTp03jyhPwEISMjA+7u7tDechDDj88knt8euliakkiabTGCgoJw9Sq5/Vc4HA4WLlyIefPmof4H+iOpiA4LmlFs6YTt27cjLCwMFhYWUjlOXFwctmzZgpLFf0slvy3Ef+LonRU9173RdQgNDcWFCxeI5r777rtYvnw5WvapEs2lyIssa8GCBQsQHh6O4cOlcxHj2LFjiIyMhDhINn216BIZqlMej2fjm2/W48SJE0RznZ2dsXPnTnAidIjm9hbymHT8O/cJMMQVmzZtgru7O+Li4ojmV1dXw8bGBlZWVuATTW4b0ZkgnQX2TFVT1LB582YcPHiQ6C1xgwcPxpo1a6Q2o6CkK7evDTZs2ABXV1fi2RkZGdi7dy9K/xVPPPtltAhSryWcrokff/wRe/bsQXV1NbFcU1NTBAUFYezYsfRCyBuQ9+9cmtYABAcHY9iwYcSzT506hZiYGLSsvU08+3n0LDTVrob3tbF7925s27aN6NVAPT09fPnll5g2bRqqt5Jb3kHJx10TW6xZswYDBgwgmltWVoaIiIhndw9JC50JUm2qf08Le/fuxaZNm1BcXEwsl8vlYvny5fjwww9Rt4NYLCVn06ZNw/Lly6GpqUk0NzExEX/88YdUL5IQvzBCC2H31/C+Nvbv34/w8HCii2OZTCYWLVqEhQsXonEXvSZHgqL8vv18twxz587F9evXwWKxiC3grqmpgaOjI8aOHQtp7UJC3w5TL2ieqYsDBw7g+++/R0FBAdHsKVOmYMWKFVD6hexsgVIMRx6LsHTpUlhbWxPNTUlJQXR0tNTODdIiSD0jmqWHiIgIfPfdd8TvB/by8kJgYCD0jvUnmtvbKcpMsJWDgwNmzpwJVVVyaz6bmpoQHR2N3NxcYpnPo0WQAvB0Bnjo0CGEhobi/v37RLOdnZ2xbt06mJ6T37aKPZkiFcJ/5z7BrFmz4O3tTTQ3KSkJcXFxEAWS28K1FS2CFMSz9XH48GEEBwcTf7W1s7NDSEgIrC6NIJpLPaVIBbDVKSEHc+fOhZERuYa4QqEQR48elUqrO1oEKRw5cgRr165FTk4O0VwrKyusW7cO9qnkF9NSis3X1xdjxowhmnnp0iUkJCQQPzdIi2AvF6l+CUFBQUS3yAT+txh6woQJRHOpFyniTBAADhYJMXXqVKKzwaqqKkRFReHxY7Kt+mgR7MWOaSYhICAAt2+TfWU1MjJCcHAw3n33XVRtoXsF91ZjxoyBs7MzmExyZSYhIYFoByOAFsFeK7rPdaxZswaZmWRPNBsaGiIgIAAzZ86kd4PIwMvbUiiS30saMX36dGhraxPLLC0txbFjx1Czitz2j3TFai90xiAdq1evQUZGBtFcXV1dfP311/jwww9Ru70nbpFEScrDwwPOzs7E8sRiMSwsLJCamgpSZ5rpTLCXiTXOREBAANHtMQGAx+Phs88+wyeffELvBqGeiapgYPLkyVBXVyeWmZOTg7NnzxJbLkOLYC8Sb5qNwMBA4udUuFwu/P398a9//QvivRyi2VT35+bmBjs7O6KZsbGxyM7OJpJFi2AvcdniPgIDA3Hx4kWiuSoqKli0aBH8/f3B+JlLNJvqmKKeD3yemZkZxo4dCw6H3AtkSkoKLl26RGS5DC2CvcBVy3wEBAQQ7wAMAPPmzcPKlSuhfECLeDbVM+y/Vw4fHx+i+5IIhULExMSgpKTkjbNoEezhUm0eITAwEOfPnyeay2Kx8NFHH+Grr76C2kFdotlU53WHmSAA2Nvbw83NDSwWi1hmXFwckdUNtAj2YDeHP8batWtx7tw5iMViYrksFgszZsxAQEAANA+/RSyX6rl+vlsGX19fvPUWuZ+XkpISnD17FsLVb3aRjxbBHuqOYyWCgoJw8uRJNDeTXbA8depUBAYGos+fJkRzKcl1l5kgADg5OcHW1pZoZkxMzBs3/KBFsAfKcapGUFAQjh8/jqamJqLZkydPRnBwMAz+IttKner5Ista4O3tDS6X3AW0O3fuIC4u7o0ukNAi2MPkuzciODgYkZGRxAvguHHjEBwcDONT0tl4m+r5vL290b8/uZ6StbW1OHXqFAQCQZczaBHsQYq8xFi7di2OHDmCxkayO7h5enoiJCSE9gSk3sjAgQPh5uZGNDM5ORnXrl3r8vNpEewhHo4RISgoiPjewAAwevRofPvttzCPI3s+h+p9fi2ogbe3N3R1ya0oePToEWJjY1H3ZUqXnk+LYA9Q5CVGaGgoIiIiiBdAR0dHhIWFYfBFe6K5VO81YsQIDB8+nGjm+fPnu9wNiRbBbq5kLAPfffcdDhw4AKFQSDTbzs4OYWFhsElyJJpL9W5nGtTA5/PBZpO7xzwjIwOJiYld2pqTFsFuTDCOhe+++w7/93//h9raWqLZVlZWWL9+PYanjCaaS1HA0/uJSd5BIhKJcPbs2S5t1E6LYDdV6stEWFgY9u/fj5qaGqLZFhYW2LhxI0becCeaS1Gt7O3tMXLkSKKZly9fRlpamsTPo0WwG3o8no0NGzZg3759qK6uJprdr18/rF+/Hs63vIjmUtTzIgpr4enpCT09PWKZT548wcmTJyVuuEqLYDdTPkkFmzZtwt69e4kXQH19fYSEhGDKlClEcymqLXw+H+bm5kQzY2NjJd4vhxbBbqTCj4PNmzfjp59+QmVlJdFsHR0dBAcHY+bMmXRfEEomTExM4OHhARUVFWKZeXl5iI2Nleg5tAh2ExV+HGzduhU//PADKioqiGZra2vjm2++wfz582lbfEpmWpsqGBoaEstsaGjAuXPn8HBB5wshLYLdQNUUNezYsQM7duxAeXk50Wwej4cvvvgCn376KYQ7u8/N+FTPYGNjQ/wCSWpqKhISEjr9eFoEFVztOzzs3LkT27dvR1lZGdFsVVVVrFixAosXL0bTT0pEsymqMw4LmuHt7Q01NTVimQKBAOfOnUPliqROPZ4WQQXWWgC3bNlCfMNpLpeL5cuXw9/fH/g3uR9AipKUs7MzrK2tiWbGx8d3uuEqLYIKSjhdE3v27MHmzZuJF0AOh4OFCxdixYoVYP2HRzSboiRlYWEBDw8Popm5ublISEhA4zc3OnwsLYIK6s8//8TmzZtRWlpKNFdJSQkff/wxVq1aRfcFoRTCLw+qwOfzYWJCrkmvWCzGqVOnkJ+f3+FjaRFUQMlWhdi6dSsKCwuJ5rLZbMydOxerV6+m+4JQCsXBwYH4tpzJycm4evVqhw1XaRFUMEVeYqxfvx7Xr18nmquqqop58+YhNDQUvN8NiGZT1JuKqmDA3d0dGhoaxDJramoQHR3d4ZIycm0cKCKOHDmCM2fOQCQSEctksViws7ODi4sLioqKIHIrAPC//SkYDAaYTOazv7d+vPx5W197/nNFpa2tDaVfNOU9DKoDXl5e+M9//kM0MzExEZmZmXhdGxBaBBXIrRFlWLjwD1RVVRHPLi0txfbt29HS8nQx9PNF6/kC2PpnewWvra8pehHkcrmws7PDvHnzoBvVT97DodoxePBgODk5gc1mE9scrLCwEGfOnMGotTfB/nZIm4+hRVCBnDt3Dunp6cRzSc4quysWi4WHDx8iJCQEGn+Qu0OBIuc/9yswbtw4REVFEcsUiURwcXHBnDlzMKidx9Bzggqi6YM+SE1NlcoskHr6y/DHH3/gr7/+gvpn9MdeUY0cOZL4tpwZGRmIi4tr9/v0p0FB5OXl4e7du/IeRo8mFAoRExNDvPkERY6hoSG8vLyIdp2uqqpCbGwsHi9NbPP7tAgqiEePHhFfFE29KiMjA3l5efIeBtWOn++Wgc/nw8zMjGjupUuXkJqa2ub3aBFUEPX19WhoaJD3MHq8mpoaPHr0SN7DoF7DysoKrq6uRDMLCgqQkJAA4epXCyEtggqioaGB+F7B1Kuam5vp22EF93tJIzw8PNCnTx+iuXFxcW3uQUKLoIKgM0HZaGxsREVFBTRX0q45iszJyQlDhrS9pKWr0tPTcfPmzVe+Touggmhdv0dJn1gslvcQqA6YmZlh9OjR4HA4xDIrKytx5syZV75Oi6CCUFZWhpISnZ1IG5vNhoaGhkIv7qaAfTmP4e3tjb59+xLNbWupDC2CCoLL5UJVVVXew+jxlJSUoKmpiYpN9PyromttqtB6RxMJBQUFr3yNFkEFoa+vT/xEMPUqJSUl6OrSDjrdwW8P6+Dj4wN1dXVimbW1ta98jWgRpOdaum7AgAEwNjaW9zB6vH79+hF/iyWJlpYWor8nPf13zt3dHYMHDyaW19a/F9EiyOFwiE5dexONqDq4uLgQPRFMvWr48OFynXErKSkR3U9DXV0dLBaLWJ6iGTBgAMaNGyfVYxCrWBoaGrCxsYHK72R3Q+tN3n//fXzwwQfgcrnyHkqPZGRkRPztlaR4PB5GjhxJ5LYwPT09jBo1CgfyqwmMTDHtv1eOadOmwc3NTWrHYACgazMoiuq16HtXiqJ6NVoEKYrq1f4fgXTxXOx3bCIAAAAASUVORK5CYII=" alt="F²R — Fiction to Reality"></span></a>
-  <span class="tag">XY&nbsp;Lab &middot; AN-01<br>Step&nbsp;&amp;&nbsp;repeat lithography</span>
+  <span class="tag" id="mtag">XY&nbsp;Lab &middot; AN-01<br>Step&nbsp;&amp;&nbsp;repeat lithography</span>
   <span class="xlink"><a id="xother" data-rel="./index.html" href="https://claude.ai/artifact/JsHwsWgqw9SrsBYjdcDFVn">&larr;&nbsp;XY&nbsp;One</a><a class="shop" href="./shop.html">Buy&nbsp;one&nbsp;&middot;&nbsp;&#8377;2,500</a></span>
 </div>
 
@@ -337,7 +341,7 @@ body[data-theme="dark"] .repo.buy{color:#080C13;}
 <div id="readout" class="chrome">
   <span class="lbl">X</span> <b id="rx">0.000000</b> mm&nbsp;&nbsp;
   <span class="lbl">Y</span> <b id="ry">0.000000</b> mm<br>
-  <span class="lbl">Step</span> <span class="f" id="rstep">&lt;20 nm</span>&nbsp;&nbsp;<span class="lbl">Field</span> <span class="f" id="rfield">&mdash;</span>&nbsp;&nbsp;<span class="lbl">State</span> <b id="rmode">Idle</b>
+  <span class="lbl">Step</span> <span class="f" id="rstep">&lt;20 nm</span>&nbsp;&nbsp;<span class="lbl" id="rflbl">Field</span> <span class="f" id="rfield">&mdash;</span>&nbsp;&nbsp;<span class="lbl">State</span> <b id="rmode">Idle</b>
 </div>
 
 <div id="hint" class="chrome">
@@ -435,6 +439,52 @@ body[data-theme="dark"] .repo.buy{color:#080C13;}
           <li>Not a cleanroom. No filtered air, no temperature control, no vibration isolation beyond the table you bolt it to.</li>
           <li>Overlay between fields is bounded by the stage's repeatable increment, currently 210 nm, and by whatever the frame drifts through a long write.</li>
           <li>The exposure shown here is a simulation built from the stage's measured numbers. Patterned substrates from this setup are the next thing we publish.</li>
+        </ul>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="chapter" id="ch-couple" data-side="left">
+    <div class="inner"><div class="panel">
+      <span class="key"></span>
+      <div class="eyebrow"><span>Fibre to chip</span><span class="rev">Fig. 8 &middot; Live</span></div>
+      <h2>The fibre stays still. The chip moves.</h2>
+      <div class="copy">
+        <p>Swap the projection optics for a fibre array and the same stage becomes the moving half of a photonics test bench. Eight fibres at 127&nbsp;&micro;m pitch sit in a glass V-groove block, polished so the cores meet the chip at 8&deg;. Under them, a silicon die carries rows of grating couplers: the outer two channels joined by a loopback waveguide, the inner pairs feeding ring resonators.</p>
+        <p>Nobody can see a ten-micron coupler through a block of glass, so alignment is done by listening to light. The stage brings the chip within a few tens of microns by eye, then spirals outward until the power meter registers first light. From there it hill-climbs in shrinking steps, the last of them 210&nbsp;nm &mdash; the stage's repeatable increment &mdash; until the loopback peaks. Then it steps to the next block and does it again.</p>
+      </div>
+      <figure class="fig scope">
+        <canvas id="fig8" role="img" aria-label="Live alignment map: the fibre core spirals outward over the chip until first light, then hill-climbs onto the grating coupler while the loopback power rises to its peak."></canvas>
+      </figure>
+      <div class="specs">
+        <div><span class="k">Coupler</span><span class="v">Surface grating <i>8&deg; fibre angle</i></span></div>
+        <div><span class="k">Fibre array</span><span class="v">8 channels <i>127 &micro;m pitch</i></span></div>
+        <div><span class="k">Mode field</span><span class="v">10.4 &micro;m <i>SMF-28, 1550 nm</i></span></div>
+        <div><span class="k">1 dB lateral tolerance</span><span class="v">&plusmn;2.5 &micro;m</span></div>
+        <div><span class="k">Cost of a 210 nm miss</span><span class="v">0.007 dB <i>per coupler</i></span></div>
+      </div>
+      <p class="figcap"><b>Fig. 8</b> &mdash; Live simulation of active alignment. The stage carries the chip under a fixed fibre array; the map follows fibre channel 1 over its input coupler, in micrometres, coloured by loopback power wherever it has been sampled. Coupling is the overlap of two 10.4&nbsp;&micro;m Gaussian modes with a typical 4.5&nbsp;dB coupler loss &mdash; textbook inputs, not our measurements. Array and chip are drawn to scale.</p>
+    </div></div>
+  </section>
+
+  <section class="chapter" id="ch-photonics" data-side="right">
+    <div class="inner"><div class="panel wide">
+      <span class="key"></span>
+      <div class="eyebrow"><span>Why it matters</span><span class="rev">The argument</span></div>
+      <h2>Light in, light out.</h2>
+      <p class="standfirst">A photonic chip is useless until you can get light into it. The last ten microns are where the money goes.</p>
+      <div class="copy">
+        <p>Silicon photonics has quietly become something you can design on a laptop. Multi-project wafer runs share one mask between many groups, so a die full of waveguides, rings and interferometers no longer needs a fab of your own. Getting light onto it is another matter. A grating coupler accepts a fibre over a few micrometres; miss by five and more than half your signal is gone. So every photonics lab has the same instrument at its centre: a fibre held still, a chip that moves under it, and something that walks the two together until the power meter peaks.</p>
+        <p>That something is usually a motorised or piezo alignment stage, and it is usually the reason a group owns one test setup instead of four. XY&nbsp;Lab repeats 210&nbsp;nm steps across a 3&nbsp;mm envelope &mdash; an order of magnitude finer than the coupler can tell apart, with enough travel to step along a row of test structures. Bolt one under a fibre array, and the expensive half of the bench becomes a print.</p>
+        <p>We are not claiming a probe station. We are claiming that the alignment stage should stop being the reason a chip sits untested in a drawer.</p>
+      </div>
+      <div class="notes">
+        <h3>What this is not &mdash; yet</h3>
+        <ul>
+          <li>Not a measurement. Alignment and coupling on this page are simulated from the stage's measured step and textbook coupler figures. Coupled-light data from our own bench is what we are working towards.</li>
+          <li>Two axes, not six. The stage moves the chip in the plane; fibre height and the 8&deg; tilt are set once on a fixed mount. A grating coupler is far more forgiving of height than of in-plane position, which is exactly where the stage earns its place.</li>
+          <li>Surface couplers only. Butting a fibre against a polished chip facet needs vertical alignment this stage does not have.</li>
+          <li>Plastic moves with temperature. A printed frame grows several times more per degree than steel, so expect to re-peak before each measurement rather than align once and walk away.</li>
         </ul>
       </div>
     </div></div>
@@ -581,6 +631,10 @@ body[data-theme="dark"] .repo.buy{color:#080C13;}
           <p>A source, a mask carrying your pattern, a lens to project it onto the substrate, a shutter, a coated substrate, and controls that can sequence them together. None of that is in the &#8377;1,500. What the &#8377;1,500 buys you is the part that used to cost more than all of it put together.</p>
         </details>
         <details>
+          <summary>Can it align fibres to a photonic chip?</summary>
+          <p>For surface grating couplers, that is what we are exploring now. A standard coupler gives up 1&nbsp;dB at about 2.5&nbsp;&micro;m of lateral error, and the stage repeats 210&nbsp;nm steps, so the resolution is there with room to spare. Fibre height and tilt go on a fixed mount; the first coupled-light measurements are on our bench. If you have a chip that needs light in it, write to us.</p>
+        </details>
+        <details>
           <summary>How far does it travel?</summary>
           <p>About 3 mm on each axis. That is the trade a flexure makes: the blades have a finite elastic range, and pushing past it costs you linearity long before it costs you the part. A 5 mm die needs two mountings to cover; if you need centimetres in one go, you want a bearing stage.</p>
         </details>
@@ -649,8 +703,8 @@ body[data-theme="dark"] .repo.buy{color:#080C13;}
         <div class="dist">F&sup2;R instrumentation<br>atharvdubey.nj@gmail.com &middot; Tel. +91 81092 85020<br>F2R-XY-01 / AN-01</div>
       </div>
       <p class="fineprint">
-        &copy; 2026 F&sup2;R &mdash; Fiction to Reality. Application note AN-01 &middot; Step-and-repeat lithography / F2R-XY-01.
-        Stage figures obtained by video-tracking characterisation and may vary between builds. The exposure sequence on this page is a simulation driven by those figures.
+        &copy; 2026 F&sup2;R &mdash; Fiction to Reality. Application notes AN-01 &middot; Step-and-repeat lithography, AN-02 &middot; Fibre-to-chip alignment / F2R-XY-01.
+        Stage figures obtained by video-tracking characterisation and may vary between builds. The exposure sequence and the fibre alignment on this page are simulations driven by those figures.
       </p>
     </div></div>
   </section>
@@ -711,7 +765,7 @@ const FEED     = 4.6;    // mm/s while exposing
 const RAPID    = 16.0;    // mm/s while stepping
 
 const RAINBOW = ['#61BB46','#FDB827','#F5821F','#00A0B0','#E03A3E','#963D97','#009DDC'];
-const STRIPES = ['#0E0E0E','#61BB46','#FDB827','#F5821F','#00A0B0','#963D97','#E03A3E',
+const STRIPES = ['#0E0E0E','#61BB46','#FDB827','#F5821F','#00A0B0','#963D97','#F5821F','#61BB46','#E03A3E',
                  '#009DDC','#61BB46','#FDB827','#0E0E0E','#F5821F','#009DDC'];
 const PAPER = new THREE.Color('#FCFBF7');
 const NAVY  = new THREE.Color('#080C13');
@@ -724,6 +778,8 @@ const CH = [
   { el:'ch-bench',   label:'Bench',    cam:[ 208,178, 276], look:[  4,14,  4], pan:-1, dark:0.12, ghost:0,   move:0, motors:1, mode:'idle',  spin:0.016, table:1, die:1, beam:0 },
   { el:'ch-write',   label:'Exposure', cam:[   6, 46, -13], look:[ -3,37.2,-24],pan:0.9, tight:1, dark:1,    ghost:0,   move:1, motors:1, mode:'litho', spin:0.000, table:1, die:1, beam:1 },
   { el:'ch-access',  label:'Access',   cam:[ -56,104,  84], look:[ -3,38,-22 ], pan:-1, dark:1,   ghost:0,   move:1, motors:1, mode:'litho', spin:0.006, table:1, die:1, beam:1 },
+  { el:'ch-couple',  label:'Fibre',    cam:[ 4.6, 41.4,-15.2], look:[ -3,37.9,-23.6],pan:0.9, tight:1, dark:1, ghost:0, move:1, motors:1, mode:'couple', spin:0.000, table:1, die:1, beam:0, fiber:1 },
+  { el:'ch-photonics',label:'Photonics',cam:[ 50, 82,  44], look:[ -3,40,-22 ], pan:-1, dark:1,   ghost:0,   move:1, motors:1, mode:'couple', spin:0.006, table:1, die:1, beam:0, fiber:1 },
   { el:'ch-motion',  label:'Metrology',cam:[   0,304,  14], look:[ -2,16,-18], pan:0.55, cut:1, dark:1,    ghost:1,   move:1, motors:1, mode:'seek',  spin:0.000, table:1, die:1, beam:0 },
   { el:'ch-data',    label:'Data',     cam:[-178,112, 168], look:[  0,14,  0], pan:-1, dark:0.20, ghost:0.4, move:1, motors:1, mode:'flex',  spin:0.012, table:1, die:1, beam:0 },
   { el:'ch-compare', label:'Compare',  cam:[ 118,228, 152], look:[  0,10,  0], pan:1, dark:0.10, ghost:0,   move:0, motors:1, mode:'idle',  spin:0.018, table:1, die:1, beam:0 },
@@ -1239,6 +1295,449 @@ function advanceWrite(dt, clock){
   }
 }
 
+/* ════════ AN-02 · FIBRE TO CHIP ════════
+   A fixed 8-channel fibre array hovering over a silicon photonic die. The
+   stage carries the die; alignment is a spiral search for first light, then a
+   hill-climb in steps down to the stage's 210 nm repeatable increment.
+   Simulation runs in micrometres; the scene is in millimetres.            */
+const FA_N     = 8;
+const FA_PITCH = 0.127;                 // mm, standard V-groove pitch
+const FA_TILT  = 8*Math.PI/180;         // fibre angle off the chip normal
+const FA_TAN   = Math.tan(FA_TILT);
+const FA_GAP   = 0.05;                  // mm, polished face above the chip
+const FA_W = 3.0, FA_H = 3.2;           // block width and height
+const MODE_W   = 5.2;                   // µm, 1/e² radius (10.4 µm MFD)
+const GC_LOSS  = 4.5;                   // dB per coupler, typical published
+const WG_LOSS  = 0.4;                   // dB, loopback waveguide
+const PEAK_DB  = -(2*GC_LOSS + WG_LOSS);
+const FLOOR_DB = -60;
+const FIRST_LIGHT = -45;
+const PY  = PED_H + 0.515;              // waveguide layer, die-local
+const chX = i => (i - (FA_N-1)/2) * FA_PITCH;
+const BLOCKS = [[-1.2,-1.1],[0,-1.1],[1.2,-1.1],[1.2,0.3],[0,0.3],[-1.2,0.3]];   // mm, serpentine
+const IS_IN  = [1,1,0,1,0,1,0,0];       // ch1 loopback in, ring inputs on 2/4/6
+const TIA    = ['#2F6FDB','#F5821F','#61BB46','#8A5A36','#8C96A1','#EDEDE8','#E03A3E','#1C1C1C'];
+
+/* ---- the photonic layout, one block, block-local mm (z runs away from the couplers) ---- */
+function fillet(pts, r){
+  const out = [pts[0]];
+  for (let i=1;i<pts.length-1;i++){
+    const p0 = pts[i-1], p1 = pts[i], p2 = pts[i+1];
+    const ax = p0[0]-p1[0], az = p0[1]-p1[1], bx = p2[0]-p1[0], bz = p2[1]-p1[1];
+    const la = Math.hypot(ax,az), lb = Math.hypot(bx,bz), rr = Math.min(r, la/2, lb/2);
+    const s = [p1[0]+ax/la*rr, p1[1]+az/la*rr], e = [p1[0]+bx/lb*rr, p1[1]+bz/lb*rr];
+    for (let k=0;k<=8;k++){
+      const t = k/8, u = 1-t;
+      out.push([u*u*s[0]+2*u*t*p1[0]+t*t*e[0], u*u*s[1]+2*u*t*p1[1]+t*t*e[1]]);
+    }
+  }
+  out.push(pts[pts.length-1]);
+  return out;
+}
+const WG_START = 0.045;
+const BLOCK_PATHS = [];                 // open waveguide runs
+BLOCK_PATHS.push(fillet([[chX(0),WG_START],[chX(0),0.46],[chX(7),0.46],[chX(7),WG_START]], 0.045));
+[[1,2],[3,4],[5,6]].forEach(p => BLOCK_PATHS.push(
+  fillet([[chX(p[0]),WG_START],[chX(p[0]),0.26],[chX(p[1]),0.26],[chX(p[1]),WG_START]], 0.03)));
+const RING_R = 0.022;
+const RINGS = [[1,2],[3,4],[5,6]].map(p => {
+  const cx = (chX(p[0])+chX(p[1]))/2, cz = 0.26 + 0.004 + RING_R, pts = [];
+  for (let k=0;k<=48;k++){ const a = -Math.PI/2 + k/48*Math.PI*2;
+    pts.push([cx + Math.cos(a)*RING_R, cz + Math.sin(a)*RING_R]); }
+  return pts;
+});
+function gcOutline(x){
+  const h = 0.006, segs = [];
+  const sq = [[x-h,-h],[x+h,-h],[x+h,h],[x-h,h],[x-h,-h]];
+  for (let i=1;i<sq.length;i++) segs.push(sq[i-1], sq[i]);
+  for (let k=-2;k<=2;k++){ const xx = x + k*0.0024; segs.push([xx,-h],[xx,h]); }
+  segs.push([x-h,h],[x-0.0006,WG_START], [x+h,h],[x+0.0006,WG_START]);
+  return segs;
+}
+
+/* unlit layout across the whole die: every block, seal ring, marks, heater pads */
+const picPts = [];
+const seg2 = (a,b) => picPts.push(a[0],PY,a[1], b[0],PY,b[1]);
+const poly2 = (pl,ox,oz) => { for (let i=1;i<pl.length;i++)
+  seg2([pl[i-1][0]+ox, pl[i-1][1]+oz], [pl[i][0]+ox, pl[i][1]+oz]); };
+BLOCKS.forEach(b => {
+  BLOCK_PATHS.forEach(pl => poly2(pl, b[0], b[1]));
+  RINGS.forEach(pl => poly2(pl, b[0], b[1]));
+  for (let i=0;i<FA_N;i++){ const s = gcOutline(chX(i));
+    for (let k=0;k<s.length;k+=2) seg2([s[k][0]+b[0], s[k][1]+b[1]], [s[k+1][0]+b[0], s[k+1][1]+b[1]]); }
+});
+[2.36, 2.30].forEach(h => poly2([[-h,-h],[h,-h],[h,h],[-h,h],[-h,-h]], 0, 0));
+[[-1,-1],[1,-1],[-1,1],[1,1]].forEach(s => { const x = s[0]*2.05, z = s[1]*2.05;
+  seg2([x-0.07,z],[x+0.07,z]); seg2([x,z-0.07],[x,z+0.07]); });
+for (let k=0;k<20;k++){ const x = -1.52 + k*0.16, z = 1.55, p = 0.05;
+  poly2([[x-p,z-p],[x+p,z-p],[x+p,z+p],[x-p,z+p],[x-p,z-p]], 0, 0); }
+const picG = new THREE.BufferGeometry();
+picG.setAttribute('position', new THREE.Float32BufferAttribute(picPts, 3));
+const picMat = new THREE.LineBasicMaterial({color:0xB4C6D8, transparent:true, opacity:0, depthWrite:false});
+const picLines = new THREE.LineSegments(picG, picMat); picLines.renderOrder = 3;
+dieGroup.add(picLines);
+
+/* lit waveguides: light pulses running along each path, one set per block.
+   Drawn after the glass (which writes no depth) so the light reads through it. */
+const litUni = { uT:{value:0}, uI:{value:0} };
+const litMat = new THREE.ShaderMaterial({
+  uniforms: litUni, transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
+  vertexShader:`
+    attribute float aS; varying float vS;
+    void main(){ vS = aS; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+  fragmentShader:`
+    uniform float uT; uniform float uI; varying float vS;
+    void main(){
+      float p = pow(0.5 + 0.5*sin((vS*24.0 - uT*2.2)*6.2831853), 8.0);
+      vec3 c = mix(vec3(1.0,0.22,0.17), vec3(1.0,0.88,0.74), p);
+      gl_FragColor = vec4(c*(0.6 + 1.2*p), uI*(0.45 + 0.55*p));
+    }`
+});
+/* a soft ribbon under each lit line, so the light reads at a distance */
+const bloomMat = new THREE.ShaderMaterial({
+  uniforms: litUni, transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, side:THREE.DoubleSide,
+  vertexShader:`
+    attribute float aS; attribute float aV; varying float vS; varying float vV;
+    void main(){ vS = aS; vV = aV; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+  fragmentShader:`
+    uniform float uT; uniform float uI; varying float vS; varying float vV;
+    void main(){
+      float p = pow(0.5 + 0.5*sin((vS*24.0 - uT*2.2)*6.2831853), 6.0);
+      float f = pow(1.0 - abs(vV), 2.2);
+      gl_FragColor = vec4(vec3(1.0,0.28,0.18)*(0.7 + 0.9*p), uI*f*(0.38 + 0.55*p));
+    }`
+});
+const BLOOM_W = 0.05;
+const litBlocks = BLOCKS.map(b => {
+  const P = [], S2 = [], RP = [], RS = [], RV = [], RI = [];
+  const run = (pl) => { let s = 0;
+    for (let i=1;i<pl.length;i++){
+      const a = pl[i-1], c = pl[i], dx = c[0]-a[0], dz = c[1]-a[1], l = Math.hypot(dx, dz);
+      P.push(a[0]+b[0], PY+0.002, a[1]+b[1], c[0]+b[0], PY+0.002, c[1]+b[1]);
+      S2.push(s, s+l);
+      const nx = -dz/l*BLOOM_W/2, nz = dx/l*BLOOM_W/2, o = RP.length/3;
+      RP.push(a[0]+b[0]+nx, PY+0.001, a[1]+b[1]+nz,  a[0]+b[0]-nx, PY+0.001, a[1]+b[1]-nz,
+              c[0]+b[0]+nx, PY+0.001, c[1]+b[1]+nz,  c[0]+b[0]-nx, PY+0.001, c[1]+b[1]-nz);
+      RS.push(s, s, s+l, s+l); RV.push(1, -1, 1, -1);
+      RI.push(o, o+1, o+2, o+1, o+3, o+2);
+      s += l;
+    } };
+  BLOCK_PATHS.forEach(run); RINGS.forEach(run);
+  const grp = new THREE.Group(); grp.visible = false;
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(P, 3));
+  g.setAttribute('aS', new THREE.Float32BufferAttribute(S2, 1));
+  const m = new THREE.LineSegments(g, litMat); m.renderOrder = 11; grp.add(m);
+  const rg = new THREE.BufferGeometry();
+  rg.setAttribute('position', new THREE.Float32BufferAttribute(RP, 3));
+  rg.setAttribute('aS', new THREE.Float32BufferAttribute(RS, 1));
+  rg.setAttribute('aV', new THREE.Float32BufferAttribute(RV, 1));
+  rg.setIndex(RI);
+  const rm = new THREE.Mesh(rg, bloomMat); rm.renderOrder = 10; grp.add(rm);
+  dieGroup.add(grp); return grp;
+});
+
+/* coupler glows on the die, moved to whichever block is under the array */
+const glowSprite = (col, s) => { const m = new THREE.SpriteMaterial({map:hazeTex, color:new THREE.Color(col),
+  transparent:true, opacity:0, blending:THREE.AdditiveBlending, depthWrite:false});
+  const sp = new THREE.Sprite(m); sp.scale.set(s, s, 1); sp.renderOrder = 12; return sp; };
+const gcGlow = [], gcHalo = [];
+for (let i=0;i<FA_N;i++){
+  const sp = glowSprite('#FF3B2F', 0.24); dieGroup.add(sp); gcGlow.push(sp);
+  const h = glowSprite('#FF6A3D', 0.62); dieGroup.add(h); gcHalo.push(h);
+}
+
+/* ---- the fibre array: V-groove substrate, lid, cores, boot and ribbon ---- */
+const fiberGroup = new THREE.Group();
+const shear = new THREE.Matrix4().set(1,0,0,0, 0,1,0,0, 0,-FA_TAN,1,0, 0,0,0,1);
+function slab(w, h, z0, z1, y0){
+  const g = new THREE.BoxGeometry(w, h, z1-z0);
+  g.translate(0, y0 + h/2, (z0+z1)/2); g.applyMatrix4(shear); return g;
+}
+const glassMat = new THREE.MeshStandardMaterial({color:0xBFDCF0, roughness:0.06, metalness:0.2,
+  transparent:true, opacity:0, depthWrite:false, side:THREE.DoubleSide});
+const lidMat = glassMat.clone();
+const glassEdgeMat = new THREE.LineBasicMaterial({color:0xD9EEFB, transparent:true, opacity:0, depthWrite:false});
+const bootMat = new THREE.MeshStandardMaterial({color:0x14171C, roughness:0.7, metalness:0.1, transparent:true, opacity:0});
+[[slab(FA_W, FA_H, -1.30, 0.0, 0), glassMat], [slab(FA_W, FA_H, 0.0, 0.32, 0), lidMat]].forEach(p => {
+  const m = new THREE.Mesh(p[0], p[1]); m.renderOrder = 8; fiberGroup.add(m);
+  const e = new THREE.LineSegments(new THREE.EdgesGeometry(p[0]), glassEdgeMat); e.renderOrder = 8; fiberGroup.add(e);
+});
+const boot = new THREE.Mesh(slab(2.5, 1.7, -0.62, 0.22, FA_H), bootMat); fiberGroup.add(boot);
+const coreMats = [], tipGlow = [], spotGlow = [], tubeMats = [];
+for (let i=0;i<FA_N;i++){
+  const x = chX(i);
+  const cm = new THREE.LineBasicMaterial({color:0xFF4636, transparent:true, opacity:0,
+    blending:THREE.AdditiveBlending, depthWrite:false});
+  const core = new THREE.Line(new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(x, 0, 0), new THREE.Vector3(x, FA_H, -FA_H*FA_TAN)]), cm);
+  core.renderOrder = 9; fiberGroup.add(core); coreMats.push(cm);
+  const tg = glowSprite('#FF4636', 0.17); tg.position.set(x, 0.008, 0); fiberGroup.add(tg); tipGlow.push(tg);
+  if (IS_IN[i]){ const sg = glowSprite('#FF2A22', 0.11); sg.position.set(x, -FA_GAP + 0.02, FA_GAP*FA_TAN);
+    fiberGroup.add(sg); spotGlow.push(sg); }
+  const yb = FA_H + 1.7, xr = x*2.05;
+  const curve = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(x,      FA_H + 0.9, -(FA_H + 0.9)*FA_TAN),
+    new THREE.Vector3(x*1.6,  yb,         -yb*FA_TAN),
+    new THREE.Vector3(xr,     yb + 1.6,   -(yb+1.6)*FA_TAN - 0.08),
+    new THREE.Vector3(xr,     10.0,       -2.6),
+    new THREE.Vector3(xr,     14.5,       -6.8),
+    new THREE.Vector3(xr,     18.5,       -12.5),
+    new THREE.Vector3(xr,     21.0,       -19.0)]);
+  const tm = new THREE.MeshStandardMaterial({color:new THREE.Color(TIA[i]), roughness:0.42, metalness:0.05,
+    transparent:true, opacity:0});
+  fiberGroup.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 72, 0.062, 7, false), tm));
+  tubeMats.push(tm);
+}
+root.add(fiberGroup);
+
+/* ---- alignment simulation (µm) ---- */
+const SEEN = 100, SEEN_HALF = 50;                  // ±50 µm map at 1 µm per cell
+const seen = new Float32Array(SEEN*SEEN);
+const cp = {x:0, z:0};                             // stage offset, µm
+let cBlock = 0, cPhase = 0, cT = 0, cGen = null, cTgt = null, cDwell = 0;
+let cS0 = null, cTh = 0, cMoves = 0, cStep = '—', cP = FLOOR_DB, cEta = 0, cHistAcc = 0, seenDirty = true;
+const HIST_N = 400, cHist = new Float32Array(HIST_N).fill(FLOOR_DB);
+let cHistHead = 0;
+const cPath = [];
+const PHASES = ['Loading','Settling','Searching','Peaking','Locked'];
+const randn = () => { let u = 0, v = 0; while (!u) u = Math.random(); v = Math.random();
+  return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); };
+function offset(){ const b = BLOCKS[cBlock];
+  return { x: -(cp.x + b[0]*1000), z: -(cp.z + b[1]*1000) }; }
+function trueDb(d){ const r2 = d.x*d.x + d.z*d.z;
+  const lin = Math.pow(10, (PEAK_DB - 8.6859*r2/(MODE_W*MODE_W))/10) + Math.pow(10, FLOOR_DB/10);
+  return 10*Math.log10(lin); }
+function measDb(d){ const t = trueDb(d);
+  return t + (t < -50 ? 0.9 : 0.012)*randn(); }
+function startBlock(){
+  const a = Math.random()*Math.PI*2, m = 22 + Math.random()*18, b = BLOCKS[cBlock];
+  cTgt = { x: -b[0]*1000 - Math.cos(a)*m, z: -b[1]*1000 - Math.sin(a)*m };
+  cPhase = 0; cT = 0; cGen = null; cMoves = 1; cStep = 'rapid';
+  seen.fill(NaN); seenDirty = true; cPath.length = 0;
+  litBlocks.forEach((m2,i) => m2.visible = i === cBlock);
+  for (let i=0;i<FA_N;i++){ gcGlow[i].position.set(b[0] + chX(i), PY + 0.012, b[1]); gcHalo[i].position.copy(gcGlow[i].position); }
+}
+function resetCouple(){ cBlock = 0; cp.x = 0; cp.z = 0; startBlock(); }
+function moveToward(t, v, dt){
+  const dx = t.x - cp.x, dz = t.z - cp.z, d = Math.hypot(dx, dz), s = v*dt;
+  if (d <= s){ cp.x = t.x; cp.z = t.z; return true; }
+  cp.x += dx/d*s; cp.z += dz/d*s; return false;
+}
+function* climb(){
+  let best = {x:cp.x, z:cp.z};
+  let bestP = yield best;
+  const DIRS = [[1,0],[-1,0],[0,1],[0,-1]];
+  for (const s of [3.36, 1.68, 0.84, 0.42, 0.21]){
+    cStep = s.toFixed(2) + ' µm';
+    let improved = true, guard = 0;
+    while (improved && guard++ < 12){
+      improved = false;
+      for (const d of DIRS){
+        for (let n=0;n<12;n++){
+          const t = {x: best.x + d[0]*s, z: best.z + d[1]*s};
+          const p = yield t;
+          if (p > bestP + 0.004){ best = t; bestP = p; improved = true; } else break;
+        }
+      }
+    }
+  }
+  yield best;
+}
+function sample(){
+  const d = offset();
+  cP = measDb(d);
+  cEta = Math.pow(10, (trueDb(d) - PEAK_DB)/10);
+  if (cPhase < 2 || Math.abs(d.x) > SEEN_HALF || Math.abs(d.z) > SEEN_HALF) return;
+  const ix = Math.floor(d.x + SEEN_HALF), iz = Math.floor(d.z + SEEN_HALF);
+  for (let j=-1;j<=1;j++) for (let i=-1;i<=1;i++){
+    const u = ix+i, v = iz+j;
+    if (u >= 0 && u < SEEN && v >= 0 && v < SEEN){ seen[v*SEEN+u] = trueDb({x:u+0.5-SEEN_HALF, z:v+0.5-SEEN_HALF}); seenDirty = true; }
+  }
+  const L = cPath[cPath.length-1];
+  if (!L || Math.hypot(L[0]-d.x, L[1]-d.z) > 0.25){ cPath.push([d.x, d.z]); if (cPath.length > 4000) cPath.shift(); }
+}
+function advanceCouple(dt){
+  if (cPhase === 0){
+    if (moveToward(cTgt, 5200, dt)){ cPhase = 1; cT = 0; cStep = '—'; }
+  } else if (cPhase === 1){
+    cT += dt; if (cT >= 0.35){ cPhase = 2; cS0 = {x:cp.x, z:cp.z}; cTh = 0; cStep = '8 µm spiral'; cMoves++; }
+  } else if (cPhase === 2){
+    const a = 8/(2*Math.PI);
+    cTh += 110*dt / Math.hypot(a*cTh, a);
+    const r = a*cTh;
+    cp.x = cS0.x + r*Math.cos(cTh); cp.z = cS0.z + r*Math.sin(cTh);
+    if (cP > FIRST_LIGHT){ cPhase = 3; cGen = climb(); const r0 = cGen.next(); cTgt = r0.value; cDwell = 0; cMoves++; }
+    else if (r > 70) startBlock();
+  } else if (cPhase === 3){
+    if (cDwell === 0){
+      if (moveToward(cTgt, 32, dt)){ cp.x += 0.03*randn(); cp.z += 0.03*randn(); cDwell = 1e-6; }
+    } else {
+      cDwell += dt;
+      if (cDwell >= 0.09){
+        const r1 = cGen.next(measDb(offset()));
+        cDwell = 0;
+        if (r1.done){ cPhase = 4; cT = 0; cStep = '210 nm'; }
+        else { cTgt = r1.value; cMoves++; }
+      }
+    }
+  } else {
+    cT += dt;
+    if (cT > 4.2){ cBlock = (cBlock + 1) % BLOCKS.length; startBlock(); }
+  }
+  sample();
+  cHistAcc += dt;
+  while (cHistAcc >= 0.05){ cHistAcc -= 0.05; cHist[cHistHead] = cP; cHistHead = (cHistHead + 1) % HIST_N; }
+}
+resetCouple();
+
+/* ---- Fig. 8: the alignment map, drawn into the panel ---- */
+const f8 = document.getElementById('fig8');
+const f8ctx = f8 ? f8.getContext('2d') : null;
+const f8off = document.createElement('canvas'); f8off.width = f8off.height = SEEN;
+const f8offCtx = f8off.getContext('2d');
+const f8img = f8offCtx.createImageData(SEEN, SEEN);
+let f8vis = false, f8W = 0;
+if (f8 && 'IntersectionObserver' in window)
+  new IntersectionObserver(es => es.forEach(e => { f8vis = e.isIntersecting; }), {rootMargin:'120px'}).observe(f8);
+const CMAP = [[0,[26,21,48]],[0.25,[150,61,151]],[0.5,[0,157,220]],[0.72,[97,187,70]],[0.87,[253,184,39]],[1,[224,58,62]]];
+function cmap(db){
+  const t = Math.min(1, Math.max(0, (db - FLOOR_DB)/(PEAK_DB - FLOOR_DB)));
+  for (let i=1;i<CMAP.length;i++) if (t <= CMAP[i][0]){
+    const a = CMAP[i-1], b = CMAP[i], f = (t - a[0])/(b[0] - a[0]);
+    return [a[1][0]+(b[1][0]-a[1][0])*f, a[1][1]+(b[1][1]-a[1][1])*f, a[1][2]+(b[1][2]-a[1][2])*f];
+  }
+  return CMAP[CMAP.length-1][1];
+}
+const MONO = '"IBM Plex Mono",monospace';
+function drawFig8(accent){
+  if (!f8ctx || !f8vis) return;
+  const W = f8.clientWidth; if (!W) return;
+  const H = Math.round(W*0.85), dpr = Math.min(window.devicePixelRatio || 1, 2);
+  if (W !== f8W){ f8W = W; f8.width = Math.round(W*dpr); f8.height = Math.round(H*dpr); f8.style.height = H + 'px'; }
+  const g = f8ctx, u = W/420, pad = 12*u;
+  g.setTransform(dpr,0,0,dpr,0,0);
+  g.fillStyle = '#0B0F16'; g.fillRect(0,0,W,H);
+  const mx = pad, my = pad + 16*u, side = Math.round(W*0.55), k = side/SEEN;
+  const X = v => mx + (v + SEEN_HALF)*k, Z = v => my + (v + SEEN_HALF)*k;
+  const dim = 'rgba(242,241,236,0.55)', bright = '#F2F1EC';
+  g.font = '500 ' + (8.6*u) + 'px ' + MONO; g.textBaseline = 'alphabetic';
+  g.fillStyle = dim; g.fillText('FIBRE CH.1 OVER INPUT COUPLER', mx, pad + 8*u);
+
+  /* sampled power */
+  if (seenDirty){
+    const D = f8img.data;
+    for (let i=0;i<SEEN*SEEN;i++){
+      const v = seen[i], o = i*4;
+      if (v !== v){ D[o+3] = 0; continue; }
+      const c = cmap(v); D[o] = c[0]; D[o+1] = c[1]; D[o+2] = c[2]; D[o+3] = 235;
+    }
+    f8offCtx.putImageData(f8img, 0, 0); seenDirty = false;
+  }
+  g.fillStyle = '#05070B'; g.fillRect(mx, my, side, side);
+  g.imageSmoothingEnabled = true; g.drawImage(f8off, mx, my, side, side);
+  g.strokeStyle = 'rgba(242,241,236,0.07)'; g.lineWidth = 1;
+  g.beginPath();
+  for (let v=-40; v<=40; v+=10){ g.moveTo(X(v), my); g.lineTo(X(v), my+side); g.moveTo(mx, Z(v)); g.lineTo(mx+side, Z(v)); }
+  g.stroke();
+  g.strokeStyle = 'rgba(242,241,236,0.35)'; g.strokeRect(mx+0.5, my+0.5, side-1, side-1);
+
+  /* everything below lives inside the map window */
+  g.save(); g.beginPath(); g.rect(mx, my, side, side); g.clip();
+  /* the coupler itself, firmed up once locked */
+  g.save();
+  const locked = cPhase === 4;
+  g.strokeStyle = locked ? 'rgba(242,241,236,0.7)' : 'rgba(242,241,236,0.2)';
+  g.setLineDash(locked ? [] : [3*u, 3*u]); g.lineWidth = 1;
+  g.strokeRect(X(-6), Z(-6), 12*k, 12*k);
+  g.beginPath();
+  for (let t=-4.8; t<=4.9; t+=1.2){ g.moveTo(X(t), Z(-6)); g.lineTo(X(t), Z(6)); }
+  g.moveTo(X(-6), Z(6)); g.lineTo(X(-0.25), Z(32)); g.lineTo(X(-0.25), Z(52)); g.moveTo(X(6), Z(6)); g.lineTo(X(0.25), Z(32)); g.lineTo(X(0.25), Z(52));
+  g.stroke(); g.restore();
+
+  /* the path the fibre has walked */
+  if (cPath.length > 1){
+    g.strokeStyle = 'rgba(242,241,236,0.40)'; g.lineWidth = 1; g.beginPath();
+    g.moveTo(X(cPath[0][0]), Z(cPath[0][1]));
+    for (let i=1;i<cPath.length;i++) g.lineTo(X(cPath[i][0]), Z(cPath[i][1]));
+    g.stroke();
+  }
+  /* the fibre mode, 1/e² */
+  const d = offset();
+  const fx = X(Math.max(-SEEN_HALF, Math.min(SEEN_HALF, d.x))), fz = Z(Math.max(-SEEN_HALF, Math.min(SEEN_HALF, d.z)));
+  g.strokeStyle = bright; g.lineWidth = 1.2;
+  g.beginPath(); g.arc(fx, fz, MODE_W*k, 0, Math.PI*2); g.stroke();
+  g.beginPath();
+  const r0 = MODE_W*k + 2*u, r1 = r0 + 5*u;
+  g.moveTo(fx-r1, fz); g.lineTo(fx-r0, fz); g.moveTo(fx+r0, fz); g.lineTo(fx+r1, fz);
+  g.moveTo(fx, fz-r1); g.lineTo(fx, fz-r0); g.moveTo(fx, fz+r0); g.lineTo(fx, fz+r1);
+  g.stroke();
+  g.fillStyle = accent; g.beginPath(); g.arc(fx, fz, 1.8*u, 0, Math.PI*2); g.fill();
+  g.restore();
+
+  /* scale bar */
+  g.fillStyle = bright; g.fillRect(mx + 8*u, my + side - 10*u, 10*k, 1.5*u);
+  g.fillStyle = dim; g.font = '500 ' + (8*u) + 'px ' + MONO;
+  g.fillText('10 µm', mx + 8*u, my + side - 14*u);
+  g.textAlign = 'right'; g.fillText('±50 µm', mx + side - 7*u, my + 13*u); g.textAlign = 'left';
+
+  /* readouts */
+  const rx = mx + side + 14*u, rw = W - pad - rx;
+  let y = my + 2*u;
+  g.fillStyle = dim; g.font = '500 ' + (8.2*u) + 'px ' + MONO;
+  g.fillText('LOOPBACK  CH1 → CH8', rx, y + 6*u);
+  g.fillStyle = bright; g.font = '600 ' + (25*u) + 'px ' + MONO;
+  const pTxt = (cP < 0 ? '−' : '') + Math.abs(cP).toFixed(2);
+  g.fillText(pTxt, rx, y + 34*u);
+  const pw = g.measureText(pTxt).width;
+  g.fillStyle = dim; g.font = '500 ' + (10*u) + 'px ' + MONO; g.fillText('dB', rx + pw + 5*u, y + 34*u);
+  const off = Math.hypot(d.x, d.z);
+  const rows = [
+    ['OFFSET', off < 1 ? Math.round(off*1000) + ' nm' : off.toFixed(off < 10 ? 2 : 1) + ' µm'],
+    ['STEP',   cStep],
+    ['MOVES',  String(cMoves)],
+    ['BLOCK',  (cBlock + 1) + ' / ' + BLOCKS.length]
+  ];
+  y += 52*u;
+  rows.forEach(r => {
+    g.fillStyle = dim; g.font = '500 ' + (8*u) + 'px ' + MONO; g.fillText(r[0], rx, y);
+    g.fillStyle = bright; g.font = '500 ' + (12.5*u) + 'px ' + MONO; g.fillText(r[1], rx, y + 15*u);
+    y += 31*u;
+  });
+  const ph = PHASES[cPhase].toUpperCase();
+  g.font = '600 ' + (9*u) + 'px ' + MONO;
+  const bw = Math.min(rw, g.measureText(ph).width + 14*u), bh = 17*u, by = my + side - bh;
+  g.fillStyle = locked ? accent : 'rgba(242,241,236,0.10)'; g.fillRect(rx, by, bw, bh);
+  g.strokeStyle = locked ? accent : 'rgba(242,241,236,0.45)'; g.strokeRect(rx+0.5, by+0.5, bw-1, bh-1);
+  g.fillStyle = locked ? '#0B0F16' : bright; g.fillText(ph, rx + 7*u, by + 12*u);
+  if (!locked && Math.sin(performance.now()/160) > 0){ g.fillStyle = accent; g.fillRect(rx + bw + 6*u, by + 6*u, 5*u, 5*u); }
+
+  /* power against time */
+  const cx = pad, cw = W - 2*pad, ct = my + side + 24*u, ch = H - ct - pad;
+  const Y = db => ct + ch*(1 - (Math.max(FLOOR_DB, Math.min(-5, db)) - FLOOR_DB)/(-5 - FLOOR_DB));
+  g.fillStyle = dim; g.font = '500 ' + (8.2*u) + 'px ' + MONO;
+  g.fillText('LOOPBACK POWER · LAST 20 S', cx, ct - 8*u);
+  g.strokeStyle = 'rgba(242,241,236,0.08)'; g.beginPath();
+  [-10,-20,-30,-40,-50].forEach(v => { g.moveTo(cx + 24*u, Y(v)); g.lineTo(cx + cw, Y(v)); }); g.stroke();
+  g.fillStyle = 'rgba(242,241,236,0.40)'; g.font = '500 ' + (7.5*u) + 'px ' + MONO;
+  [-10,-30,-50].forEach(v => g.fillText(String(v).replace('-','−'), cx, Y(v) + 3*u));
+  g.strokeStyle = 'rgba(242,241,236,0.30)'; g.strokeRect(cx + 24*u + 0.5, ct + 0.5, cw - 24*u - 1, ch - 1);
+  const gx0 = cx + 24*u, gw = cw - 24*u;
+  if (locked){
+    g.save(); g.setLineDash([3*u, 3*u]); g.strokeStyle = 'rgba(242,241,236,0.45)';
+    g.beginPath(); g.moveTo(gx0, Y(PEAK_DB - 1)); g.lineTo(gx0 + gw, Y(PEAK_DB - 1)); g.stroke(); g.restore();
+    g.fillStyle = dim; g.textAlign = 'right'; g.fillText('−1 dB', gx0 + gw - 4*u, Y(PEAK_DB - 1) + 10*u); g.textAlign = 'left';
+  }
+  g.beginPath();
+  for (let i=0;i<HIST_N;i++){
+    const v = cHist[(cHistHead + i) % HIST_N], px = gx0 + gw*i/(HIST_N-1), py = Y(v);
+    if (i) g.lineTo(px, py); else g.moveTo(px, py);
+  }
+  g.strokeStyle = accent; g.lineWidth = 1.5*u; g.stroke();
+  g.lineTo(gx0 + gw, ct + ch); g.lineTo(gx0, ct + ch); g.closePath();
+  g.globalAlpha = 0.12; g.fillStyle = accent; g.fill(); g.globalAlpha = 1;
+}
+
 /* ════════ METROLOGY CROSSHAIR ════════ */
 const crossMat = new THREE.LineBasicMaterial({color:0xE03A3E, transparent:true, opacity:0});
 const cross = new THREE.Group();
@@ -1282,9 +1781,14 @@ document.querySelectorAll('.chapter').forEach((sec,i) => {
 const sections = CH.map(c => document.getElementById(c.el));
 const mk = o => ({cam:new THREE.Vector3().fromArray(o.cam), look:new THREE.Vector3().fromArray(o.look),
                   pan:o.pan, dark:o.dark, ghost:o.ghost, move:o.move, motors:o.motors, spin:o.spin,
-                  table:o.table, die:o.die, beam:o.beam, cut:o.cut||0});
+                  table:o.table, die:o.die, beam:o.beam, cut:o.cut||0, fiber:o.fiber||0});
 const S = mk(CH[0]), T = mk(CH[0]);
 let active = 0;
+const COUPLE_CH = CH.findIndex(c => c.el === 'ch-couple');
+const folioEl = document.getElementById('folio'), FOLIO1 = folioEl.innerHTML;
+const mtagEl = document.getElementById('mtag'), MTAG1 = mtagEl ? mtagEl.innerHTML : '';
+const rflEl = document.getElementById('rflbl');
+let an2On = false;
 const ease = t => t*t*(3-2*t);
 const lerp = THREE.MathUtils.lerp;
 
@@ -1324,6 +1828,7 @@ function readScroll(){
   T.die    = lerp(a.die,   b.die,   e);
   T.beam   = lerp(a.beam,  b.beam,  e);
   T.cut    = lerp(a.cut||0, b.cut||0, e);
+  T.fiber  = lerp(a.fiber||0, b.fiber||0, e);
 
   const near = t > 0.5 ? Math.min(i+1, CH.length-1) : i;
   if (near !== active){
@@ -1335,6 +1840,14 @@ function readScroll(){
     layerMat.color.set(col); layerEdgeMat.color.set(col);
     if (active === PRINT_CH && prev !== PRINT_CH) startPrint();
     if (CH[active].mode === 'litho' && CH[prev] && CH[prev].mode !== 'litho' && done) resetWrite();
+    if (CH[active].mode === 'couple' && CH[prev] && CH[prev].mode !== 'couple' && !reduce) resetCouple();
+    const an2 = CH[active].mode === 'couple';
+    if (an2 !== an2On){
+      an2On = an2;
+      folioEl.innerHTML = an2 ? 'Application note AN-02<br>Fibre-to-chip alignment<br>MMXXVI' : FOLIO1;
+      if (mtagEl) mtagEl.innerHTML = an2 ? 'XY&nbsp;Lab &middot; AN-02<br>Fibre&nbsp;to&nbsp;chip alignment' : MTAG1;
+      if (rflEl) rflEl.textContent = an2 ? 'Block' : 'Field';
+    }
   }
   document.body.dataset.theme = T.dark > 0.55 ? 'dark' : 'light';
   document.getElementById('cue').style.opacity = y > 80 ? '0' : '0.85';
@@ -1414,6 +1927,7 @@ function tick(now){
   S.die    += (T.die   -S.die)   *k;
   S.beam   += (T.beam  -S.beam)  *k;
   S.cut    += (T.cut   -S.cut)   *k;
+  S.fiber  += (T.fiber -S.fiber) *k;
 
   const mode = CH[active].mode;
   let qx, qz, exposing = false;
@@ -1423,6 +1937,10 @@ function tick(now){
     /* the beam is fixed; the stage carries the wafer from field to field */
     qx = -cur.x * S.move; qz = -cur.y * S.move;
     exposing = phase === 2 && !done;
+  } else if (mode === 'couple'){
+    if (!reduce) advanceCouple(dt);
+    /* the fibre array is fixed; the stage carries the chip under it */
+    qx = cp.x/1000 * S.move; qz = cp.z/1000 * S.move;
   } else {
     const seeking = mode === 'seek' && S.move > 0.5;
     if (seeking){ hold -= dt; if (hold <= 0) newTarget(); }
@@ -1454,6 +1972,7 @@ function tick(now){
 
   /* ---- state line ---- */
   if (printing)        rmEl.textContent = 'Printing';
+  else if (mode === 'couple') rmEl.textContent = PHASES[cPhase] + (cPhase === 4 ? ' · ' + (cP < 0 ? '−' : '') + Math.abs(cP).toFixed(2) + ' dB' : '');
   else if (mode === 'litho') rmEl.textContent = done ? 'Die complete' : (exposing ? 'Exposing' : (phase === 1 ? 'Settling' : 'Stepping'));
   else if (mode === 'seek' && S.move > 0.5) rmEl.textContent = 'Seeking';
   else rmEl.textContent = S.move > 0.5 ? 'Flexing' : 'Idle';
@@ -1462,7 +1981,7 @@ function tick(now){
   meshMetal.visible = S.motors > 0.02;
 
   ghostMat.opacity = S.ghost * 0.6;
-  crossMat.opacity = Math.max(0, S.move-0.5) * 0.7 * (1-S.beam);
+  crossMat.opacity = Math.max(0, S.move-0.5) * 0.7 * (1-S.beam) * (1-S.fiber);
 
   /* ---- table ---- */
   const tb = S.table;
@@ -1478,9 +1997,28 @@ function tick(now){
   dieGroup.visible = dv * (1 - S.cut) > 0.01;
   dieGroup.position.set(HOLDER.x + qx, HOLDER.y, HOLDER.z + qz);
   const dvc = dv * (1 - S.cut);
-  dieMat.opacity = dvc; dieEdgeMat.opacity = dvc*0.55; gridMat.opacity = dvc*0.16;
+  dieMat.opacity = dvc; dieEdgeMat.opacity = dvc*0.55; gridMat.opacity = dvc*0.16*(1-S.fiber);
   postMat.opacity = dvc;
-  trUni.uTime.value = clock; trUni.uFade.value = dvc;
+  trUni.uTime.value = clock; trUni.uFade.value = dvc*(1-S.fiber);
+
+  /* ---- fibre array + photonic layer ---- */
+  const fv = S.fiber, fd = fv*dvc;
+  fiberGroup.visible = fv > 0.01;
+  fiberGroup.position.set(HOLDER.x, DIE_TOP + FA_GAP, HOLDER.z);
+  picLines.visible = fd > 0.01;
+  picMat.opacity = fd*0.42;
+  litUni.uT.value = clock; litUni.uI.value = fd*cEta;
+  glassMat.opacity = fv*0.16; lidMat.opacity = fv*0.24; glassEdgeMat.opacity = fv*0.6; bootMat.opacity = fv;
+  tubeMats.forEach(m => { m.opacity = fv; });
+  const flk = 0.9 + 0.1*Math.sin(clock*23);
+  for (let i=0;i<FA_N;i++){
+    const lit = IS_IN[i] ? 1 : cEta;
+    coreMats[i].opacity = fv*(0.10 + 0.85*lit)*flk;
+    tipGlow[i].material.opacity = fv*(0.08 + 0.7*lit)*flk;
+    gcGlow[i].material.opacity = fd*(IS_IN[i] ? Math.sqrt(cEta) : cEta)*0.95*flk;
+    gcHalo[i].material.opacity = fd*(IS_IN[i] ? Math.sqrt(cEta) : cEta)*0.32*flk;
+  }
+  spotGlow.forEach(sp => { sp.material.opacity = fv*0.55*flk; });
 
   /* ---- beam ---- */
   const bv = S.beam;
@@ -1577,7 +2115,12 @@ function tick(now){
   hemi.intensity = 0.70 - d*0.34;
 
   /* ---- readout ---- */
-  if (mode === 'litho'){
+  if (mode === 'couple'){
+    rxEl.textContent = qx.toFixed(6);
+    ryEl.textContent = qz.toFixed(6);
+    rsEl.textContent = cStep;
+    rfEl.textContent = (cBlock+1) + '/' + BLOCKS.length;
+  } else if (mode === 'litho'){
     rxEl.textContent = qx.toFixed(6);
     ryEl.textContent = qz.toFixed(6);
     rsEl.textContent = '900 µm';
@@ -1590,9 +2133,11 @@ function tick(now){
   }
 
   renderer.render(scene, camera);
+  if (Math.abs(active - COUPLE_CH) <= 1) drawFig8(STRIPES[COUPLE_CH]);
 }
 
-if (reduce){ let g=0; while (!done && g++ < 40000) advanceWrite(0.04, 0); }
+if (reduce){ let g=0; while (!done && g++ < 40000) advanceWrite(0.04, 0);
+  g = 0; while (cPhase !== 4 && g++ < 40000) advanceCouple(0.04); }
 resize(); readScroll();
 S.cam.copy(T.cam); S.look.copy(T.look); S.pan = T.pan;
 requestAnimationFrame(tick);
