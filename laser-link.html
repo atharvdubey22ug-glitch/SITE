@@ -660,6 +660,40 @@ a.an:hover .no{color:var(--paper);}
         new T.Vector3(0, 0, 1), new T.Vector3(1, 0, 0), new T.Vector3(0, 1, 0)));
       g.scale.setScalar(S_MM);
       g.position.set(XB, -S_MM * HOLD.z, -S_MM * HOLD.x);
+
+      /* breadboard behind the stage, in the model's own millimetres: 25 mm hole
+         pitch lined up with the base slots, as on the XY Lab page's optical table */
+      var BW = 176, BT = 12, BD = 196, BZ = -24;
+      var tex = (function(){
+        var c = document.createElement('canvas'); c.width = c.height = 128;
+        var x = c.getContext('2d');
+        x.fillStyle = '#2a2e35'; x.fillRect(0, 0, 128, 128);
+        for (var i = 0; i < 1400; i++){ x.fillStyle = 'rgba(255,255,255,' + (((i * 7919) % 100) / 100 * 0.035) + ')';
+          x.fillRect((i * 37) % 128, (i * 61) % 128, 1 + (i % 9), 1); }
+        var gr = x.createRadialGradient(64, 64, 1, 64, 64, 13);
+        gr.addColorStop(0, '#05070a'); gr.addColorStop(0.72, '#0b0e13'); gr.addColorStop(1, '#31363e');
+        x.fillStyle = gr; x.beginPath(); x.arc(64, 64, 13, 0, Math.PI * 2); x.fill();
+        x.strokeStyle = 'rgba(255,255,255,0.2)'; x.lineWidth = 1.4;
+        x.beginPath(); x.arc(64, 64, 12.3, Math.PI * 0.9, Math.PI * 1.95); x.stroke();
+        return new T.CanvasTexture(c);
+      })();
+      tex.wrapS = tex.wrapT = T.RepeatWrapping; tex.repeat.set(BW / 25, BD / 25); tex.offset.set(-0.3, -0.124);
+      var side = new T.MeshStandardMaterial({color:0x23272e, roughness:0.55, metalness:0.55});
+      var top = new T.MeshStandardMaterial({map:tex, roughness:0.62, metalness:0.45});
+      var board = new T.Mesh(new T.BoxGeometry(BW, BT, BD), [side, side, top, side, side, side]);
+      board.position.set(0, -BT / 2, BZ); g.add(board);
+      var be = new T.LineSegments(new T.EdgesGeometry(new T.BoxGeometry(BW, BT, BD)), new T.LineBasicMaterial({color:INK, transparent:true, opacity:0.6}));
+      be.position.copy(board.position); g.add(be);
+
+      /* M6 cap screws through the base slots into the board */
+      var BASE_TOP = 4.35;
+      var sm = new T.MeshStandardMaterial({color:0x4E545C, roughness:0.34, metalness:0.86});
+      var hm = new T.MeshStandardMaterial({color:0x141821, roughness:0.7, metalness:0.3});
+      [[-18.0, 58.4], [7.0, 58.4], [-43.0, -16.6], [-8.1, -58.0], [16.9, -58.0], [42.9, -13.0], [42.9, -39.0]].forEach(function(q){
+        var w = new T.Mesh(new T.CylinderGeometry(6.0, 6.0, 1.2, 28), sm); w.position.set(q[0], BASE_TOP + 0.6, q[1]); g.add(w);
+        var h = new T.Mesh(new T.CylinderGeometry(5.0, 5.0, 5.4, 28), sm); h.position.set(q[0], BASE_TOP + 3.9, q[1]); g.add(h);
+        var k = new T.Mesh(new T.CylinderGeometry(2.89, 2.89, 0.3, 6), hm); k.position.set(q[0], BASE_TOP + 6.5, q[1]); g.add(k);
+      });
       return g;
     }
 
@@ -708,6 +742,14 @@ a.an:hover .no{color:var(--paper);}
       if (active){
         if (HAS_XY) mount.add(xyLabModel());
         else mount.add(box(0.5, 1.2, 1.2, mat(0x30353D), XB + 0.25, 0, 0, 0.8));   /* model missing: a stand-in block */
+        /* angle bracket: the breadboard stands on the housing floor */
+        var BK = XB - 12 * S_MM;                                       /* back face of the board */
+        mount.add(box(0.32, 0.04, 1.7, mat(0x8d9096, {metalness:0.5, roughness:0.45}), BK - 0.16, -HW + 0.045, -S_MM * HOLD.x, 0.6));
+        [-0.72, 0.72].forEach(function(zz){
+          var sh = new T.Shape(); sh.moveTo(0, 0); sh.lineTo(-0.3, 0); sh.lineTo(0, 0.3); sh.lineTo(0, 0);
+          var gus = edged(new T.Mesh(new T.ExtrudeGeometry(sh, {depth:0.03, bevelEnabled:false}), mat(0x8d9096, {metalness:0.5, roughness:0.45})), 0.6);
+          gus.position.set(BK, -HW + 0.065, zz - 0.015 - S_MM * HOLD.x); mount.add(gus);
+        });
         var postX = XB + S_MM * HOLD.y;
         plat.add(box(S_MM * PED_H, S_MM * PED_D, S_MM * PED_W, mat(0x8A9099, {metalness:0.5, roughness:0.4}),
           postX + S_MM * PED_H / 2, 0, 0, 0.7));                                   /* fibre post */
@@ -715,6 +757,8 @@ a.an:hover .no{color:var(--paper);}
       } else {
         ferBack = TIP_X - 0.3;
         mount.add(box(0.14, 0.3, 0.3, mat(0x8d9096), ferBack - 0.07, 0, 0, 0.8));  /* fixed fibre holder */
+        mount.add(box(0.1, HW - 0.15 - 0.025, 0.12, mat(0x8d9096), ferBack - 0.07, (-HW + 0.025 - 0.15) / 2, 0, 0.8)); /* post */
+        mount.add(box(0.34, 0.03, 0.34, mat(0x8d9096), ferBack - 0.07, -HW + 0.04, 0, 0.8));                         /* foot */
       }
       var fer = edged(new T.Mesh(new T.CylinderGeometry(0.022, 0.022, TIP_X - ferBack, 14), mat(0xEDEDED)), 0.6);
       fer.rotation.z = Math.PI / 2; fer.position.x = (TIP_X + ferBack) / 2; plat.add(fer);
@@ -818,7 +862,7 @@ a.an:hover .no{color:var(--paper);}
     label('Screen', '', ['overview'], wp(21.5, BH + 1.55, 1.7));
     label('1310 nm · A → B', 'tx', ['beam'], wp(-7, PIVOT_Y + 0.45, 0));
     label('1550 nm · B → A', 'rx', ['beam'], wp(1.5, PIVOT_Y - 0.3, 0));
-    label('XY Lab stage', '', ['termA', 'stage'], lp(A, XB + 0.3, 0.98, -0.35));
+    label('XY Lab stage', '', ['termA'], lp(A, XB + 0.3, 0.98, -0.35));
     label('Fibre tip', 'tx', ['termA', 'stage'], function(){ return A.mount.localToWorld(tmp.set(A.tipX, disp(p.y) + 0.1, disp(p.z))); });
     label('Slide holder', '', ['stage'], lp(A, XB + S_MM * HOLD.y, -0.3, -0.12));
     label('Lens', '', ['termA', 'termB'], function(){ return (view === 'termB' ? B : A).mount.localToWorld(tmp.set(LX, R_LENS + 0.12, 0)); });
