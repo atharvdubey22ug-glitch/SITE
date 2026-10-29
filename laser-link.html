@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F²R — Laser link · a beam that aims itself</title>
+
+<link rel="canonical" href="https://f2r.site/laser-link.html">
+<meta name="description" content="An interactive 3D explainer: how an XY Lab flexure stage keeps a two-way infrared laser link locked on target across up to a kilometre of open air. Concept in development by F²R — Fiction to Reality.">
+<meta name="theme-color" content="#FCFBF7">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="F²R — Fiction to Reality">
+<meta property="og:url" content="https://f2r.site/laser-link.html">
+<meta property="og:title" content="A laser link that aims itself">
+<meta property="og:description" content="Interactive 3D explainer: a printed flexure stage holding a two-way laser link on target across a kilometre of air.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@f2reality">
+<meta name="twitter:title" content="A laser link that aims itself">
+<meta name="twitter:description" content="Interactive 3D explainer: a printed flexure stage holding a two-way laser link on target across a kilometre of air.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script>document.documentElement.className += ' js';</script>
+
+<style>
+:root{
+  --paper:#FCFBF7;
+  --ink:#0E0E0E;
+  --ink-soft:#4a4a48;
+  --panel:rgba(252,251,247,0.94);
+  --edge:#0E0E0E;
+  --s-green:#61BB46; --s-yellow:#FDB827; --s-orange:#F5821F; --s-teal:#00A0B0;
+  --s-red:#E03A3E;   --s-purple:#963D97; --s-blue:#009DDC;
+  --accent:var(--s-red);
+  --tx:#F5821F;   /* 1310 nm, A → B (false colour) */
+  --rx:#009DDC;   /* 1550 nm, B → A (false colour) */
+  --rainbow:linear-gradient(90deg,#61BB46 0 14.28%,#FDB827 14.28% 28.57%,#F5821F 28.57% 42.85%,
+            #00A0B0 42.85% 57.14%,#E03A3E 57.14% 71.42%,#963D97 71.42% 85.71%,#009DDC 85.71% 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  color:var(--ink);
+  font-family:'EB Garamond',Garamond,'Times New Roman',serif;
+  font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(rgba(111,118,129,.11) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(111,118,129,.11) 1px,transparent 1px),
+    linear-gradient(rgba(154,161,172,.09) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(154,161,172,.09) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px;
+  background-position:-1px -1px;
+}
+::selection{background:var(--accent);color:#fff;}
+a{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;}
+a:hover{background:var(--accent);color:#fff;border-color:transparent;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;}
+
+/* ---- chrome, as on the other pages ---- */
+.chrome{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--ink-soft);}
+#mark{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  max-width:1240px;margin:0 auto;padding:24px 56px 0;}
+#mark .tag{line-height:1.75;}
+#mark .xlink{display:flex;gap:8px;flex-wrap:wrap;}
+#mark .xlink a{font-size:9.5px;letter-spacing:.2em;border:1px solid currentColor;
+  padding:3px 7px;display:inline-block;line-height:1.5;}
+#mark .xlink a:hover{background:var(--accent);color:#fff;border-color:transparent;}
+
+/* ---- type ---- */
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--ink-soft);margin-bottom:13px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.eyebrow .rev{opacity:.6;}
+h1{font-weight:800;font-size:clamp(46px,6.2vw,86px);line-height:0.9;letter-spacing:-0.032em;}
+h2{font-weight:800;font-size:clamp(27px,3.4vw,43px);line-height:1.02;letter-spacing:-0.018em;}
+h3{font-weight:800;font-size:clamp(22px,2.2vw,28px);line-height:1.05;letter-spacing:-0.014em;}
+.standfirst{font-style:italic;font-weight:600;font-size:19px;line-height:1.38;margin-top:16px;max-width:760px;}
+.copy{margin-top:15px;font-size:15.5px;line-height:1.55;}
+.copy p + p{margin-top:.6em;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+
+/* ---- panels ---- */
+.panel{position:relative;background:var(--panel);border:3px solid var(--edge);
+  box-shadow:11px 11px 0 var(--edge);padding:32px 32px 28px;}
+.panel > .key{display:block;height:6px;margin:-32px -32px 20px;}
+.key.rainbow{background:var(--rainbow);height:10px;}
+.js .reveal{opacity:0;transform:translateY(28px);
+  transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);}
+.js .reveal.in{opacity:1;transform:none;}
+
+/* ---- layout ---- */
+.wrap{max-width:1240px;margin:0 auto;padding:0 56px;}
+section{padding:40px 0;}
+#hero{padding-top:40px;padding-bottom:26px;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:36px;}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+
+/* ---- the demo ---- */
+#demo{padding-top:10px;}
+.demo{display:grid;grid-template-columns:minmax(0,1fr) 318px;border:3px solid var(--edge);
+  box-shadow:11px 11px 0 var(--edge);background:#fff;}
+.viewport{position:relative;min-height:min(72vh,720px);overflow:hidden;
+  background:var(--paper);border-right:3px solid var(--edge);}
+.viewport canvas{position:absolute;inset:0;display:block;width:100%;height:100%;touch-action:pan-y;cursor:grab;}
+.viewport canvas:active{cursor:grabbing;}
+.labels{position:absolute;inset:0;pointer-events:none;}
+.lbl{position:absolute;left:0;top:0;transform:translate(-50%,-100%);white-space:nowrap;
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  background:#fff;border:1.5px solid var(--edge);padding:2px 6px 1px;line-height:1.5;
+  box-shadow:2px 2px 0 var(--edge);transition:opacity .25s ease;}
+.lbl.tx{border-color:var(--tx);color:#a24c00;box-shadow:2px 2px 0 var(--tx);}
+.lbl.rx{border-color:var(--rx);color:#006a94;box-shadow:2px 2px 0 var(--rx);}
+.lbl.hide{opacity:0;}
+.vp-note{position:absolute;left:12px;bottom:10px;font-family:'IBM Plex Mono',monospace;font-size:9px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);background:rgba(252,251,247,.85);
+  padding:3px 6px;pointer-events:none;}
+.views{position:absolute;left:12px;top:12px;display:flex;flex-wrap:wrap;gap:6px;max-width:calc(100% - 24px);}
+.views button,.ctrl button,.step .nav button{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:600;background:#fff;color:var(--ink);border:2px solid var(--edge);
+  padding:6px 9px;cursor:pointer;box-shadow:3px 3px 0 var(--edge);line-height:1.2;}
+.step .nav button{padding:9px 9px;}
+.step .nav #next{background:var(--ink);color:var(--paper);}
+.step .nav button:disabled{opacity:.35;cursor:default;}
+.views button[aria-pressed="true"]{background:var(--ink);color:var(--paper);}
+.views button:hover,.ctrl button:hover,.step .nav button:not(:disabled):hover{background:var(--accent);color:#fff;}
+.fallback{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:30px;
+  text-align:center;font-style:italic;}
+
+.side{display:flex;flex-direction:column;min-width:0;}
+.side > div{padding:18px 18px 16px;border-bottom:2px solid var(--edge);}
+.side > div:last-child{border-bottom:0;}
+.step .k{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--ink-soft);display:flex;justify-content:space-between;}
+.step h3{margin-top:8px;font-size:23px;}
+.step p{margin-top:8px;font-size:15px;line-height:1.45;min-height:7.3em;}
+.step .nav{display:flex;gap:8px;margin-top:12px;}
+.step .nav button{flex:1;}
+.dots{display:flex;gap:5px;margin-top:10px;}
+.dots i{flex:1;height:4px;background:#ddd;}
+.dots i.on{background:var(--ink);}
+
+.ctrl button{width:100%;}
+.ctrl button.big{font-size:11px;padding:10px 10px;}
+.ctrl button[aria-pressed="false"]{background:#fff;}
+.ctrl button.loop[aria-pressed="true"]{background:var(--s-green);color:#fff;}
+.ctrl button.loop[aria-pressed="false"]{background:#fff;color:var(--ink);}
+.ctrl .row{display:flex;gap:8px;}
+.ctrl label{display:block;margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);}
+.ctrl input[type=range]{width:100%;margin-top:6px;accent-color:var(--ink);}
+
+.read .pill{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;padding:4px 8px;border:2px solid var(--edge);color:#fff;
+  background:var(--s-green);}
+.read .pill.down{background:var(--s-red);}
+.read .top{display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.read .sig{flex:1;height:10px;border:2px solid var(--edge);background:#fff;position:relative;}
+.read .sig b{position:absolute;left:0;top:0;bottom:0;background:var(--ink);width:0;}
+.read .row2{display:grid;grid-template-columns:118px 1fr;gap:12px;margin-top:12px;align-items:start;}
+.read canvas{display:block;width:100%;height:auto;border:2px solid var(--edge);background:#fff;}
+.read .cap{font-size:12px;line-height:1.35;color:var(--ink-soft);font-style:italic;margin-top:6px;}
+.read .cap .d{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--rx);vertical-align:0;}
+.read .cap .r{display:inline-block;width:9px;height:9px;border-radius:50%;border:2px solid var(--tx);vertical-align:-1px;}
+.read .vid{margin-top:12px;}
+.read .vid .t{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:5px;display:flex;justify-content:space-between;}
+
+/* ---- text blocks ---- */
+.parts{list-style:none;margin-top:16px;}
+.parts li{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:9px 0;border-top:1px solid rgba(128,128,128,.35);
+  font-size:15.5px;line-height:1.45;}
+.parts li:first-child{border-top:0;}
+.parts .n{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;padding-top:3px;}
+.parts b{font-weight:700;}
+.nums{width:100%;border-collapse:collapse;margin-top:16px;font-size:15px;}
+.nums th,.nums td{text-align:left;padding:9px 10px 9px 0;border-top:1px solid rgba(128,128,128,.35);vertical-align:top;}
+.nums th{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-soft);font-weight:500;border-top:0;}
+.nums td.v{font-family:'IBM Plex Mono',monospace;font-size:13px;white-space:nowrap;font-weight:600;}
+.limits{list-style:none;margin-top:14px;}
+.limits li{padding:8px 0 8px 18px;position:relative;font-size:15.5px;line-height:1.45;}
+.limits li::before{content:'';position:absolute;left:0;top:15px;width:8px;height:8px;background:var(--accent);}
+.wave{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+.wave span{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;padding:5px 9px;border:2px solid;}
+.wave .a{border-color:var(--tx);color:#a24c00;}
+.wave .b{border-color:var(--rx);color:#006a94;}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;line-height:1.3;text-align:center;
+  border:2px solid var(--edge);padding:15px 20px;box-shadow:6px 6px 0 var(--edge);background:var(--ink);color:var(--paper);
+  transition:background .2s ease,transform .15s ease,box-shadow .15s ease;}
+.btn:hover{background:var(--accent);color:#fff;border-color:var(--edge);transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--edge);}
+.btn.ghost{background:#fff;color:var(--ink);}
+.cta{margin-top:24px;display:flex;flex-wrap:wrap;gap:16px 22px;align-items:center;}
+.adbar{margin-top:24px;padding-top:15px;border-top:3px solid var(--edge);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;}
+.adbar .lockup{display:flex;align-items:center;gap:11px;font-weight:800;font-size:22px;white-space:nowrap;}
+.adbar .cbar{width:17px;height:29px;display:inline-block;background:linear-gradient(180deg,
+  var(--s-green) 0 16.6%,var(--s-yellow) 16.6% 33.3%,var(--s-orange) 33.3% 50%,
+  var(--s-red) 50% 66.6%,var(--s-purple) 66.6% 83.3%,var(--s-blue) 83.3% 100%);}
+.adbar .dist{text-align:right;font-family:'IBM Plex Mono',monospace;font-size:9.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);line-height:1.8;}
+.fineprint{margin-top:15px;font-size:11.5px;line-height:1.6;color:var(--ink-soft);}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .js .reveal{opacity:1;transform:none;transition:none;}
+  .btn,.btn:hover{transition:none;transform:none;}
+}
+@media (max-width:1080px){
+  .wrap,#mark{padding-left:40px;padding-right:40px;}
+  .demo{grid-template-columns:minmax(0,1fr) 290px;}
+}
+@media (max-width:900px){
+  .demo{grid-template-columns:1fr;}
+  .viewport{border-right:0;border-bottom:3px solid var(--edge);min-height:0;height:62vh;}
+  .side{display:grid;grid-template-columns:1fr 1fr;}
+  .side > div{border-bottom:2px solid var(--edge);}
+  .side > .step{grid-column:1 / -1;}
+  .side > .read{border-right:2px solid var(--edge);}
+  .two,.three{grid-template-columns:1fr;gap:24px;}
+}
+@media (max-width:760px){
+  body{font-size:16px;}
+  .wrap{padding:0 16px;}
+  #mark{padding:14px 16px 0;gap:9px;}
+  #mark .tag{display:none;}
+  #mark .xlink a{font-size:9px;padding:3px 5px;}
+  section{padding:26px 0;}
+  #hero{padding-top:24px;}
+  .panel{padding:22px 20px 20px;box-shadow:7px 7px 0 var(--edge);}
+  .panel > .key{margin:-22px -20px 16px;}
+  .demo{box-shadow:7px 7px 0 var(--edge);}
+  .viewport{height:58vh;}
+  .vp-note .x{display:none;}
+  .side{grid-template-columns:1fr;}
+  .side > .read{border-right:0;}
+  .step p{min-height:0;}
+  .views button{font-size:9px;padding:5px 7px;}
+  .lbl{font-size:8.5px;}
+}
+</style>
+</head>
+<body>
+
+<header id="mark" class="chrome">
+  <span class="tag">Application<br>Laser link</span>
+  <span class="xlink">
+    <a href="./xy-lab.html">&larr;&nbsp;XY&nbsp;Lab</a>
+    <a href="./index.html">&larr;&nbsp;XY&nbsp;One</a>
+    <a href="./shop.html">Shop</a>
+  </span>
+</header>
+
+<main>
+
+  <!-- ════════ HERO ════════ -->
+  <section id="hero">
+    <div class="wrap">
+      <div class="panel reveal">
+        <span class="key rainbow"></span>
+        <div class="eyebrow"><span>XY Lab &middot; Application</span><span class="rev">Concept &mdash; in development</span></div>
+        <h1>A laser link that aims itself.</h1>
+        <p class="standfirst">Network data carried on a beam of light between two rooftops up to a kilometre apart &mdash; and a &#8377;2,500 printed flexure stage that keeps the beam locked on target while the buildings sway. Step through it below, or grab the scene and look around.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ THE DEMO ════════ -->
+  <section id="demo">
+    <div class="wrap">
+      <div class="demo reveal">
+        <div class="viewport" id="vp">
+          <div class="labels" id="labels"></div>
+          <div class="views" role="group" aria-label="Camera view">
+            <button type="button" data-view="overview" aria-pressed="true">Overview</button>
+            <button type="button" data-view="beam" aria-pressed="false">Along the beam</button>
+            <button type="button" data-view="termA" aria-pressed="false">Inside A</button>
+            <button type="button" data-view="termB" aria-pressed="false">Terminal B</button>
+          </div>
+          <div class="vp-note">Illustration &middot; not to scale<span class="x"> &middot; drag to look around</span></div>
+          <div class="fallback" id="fallback">This 3D view needs WebGL, which this browser has switched off. The steps and readouts still explain the idea.</div>
+        </div>
+
+        <div class="side">
+          <div class="step" aria-live="polite">
+            <div class="k"><span id="stepNo">Step 1 of 6</span><span id="stepTag">The idea</span></div>
+            <h3 id="stepTitle">Two roofs, one invisible beam</h3>
+            <p id="stepText"></p>
+            <div class="dots" id="dots"></div>
+            <div class="nav">
+              <button type="button" class="ctrl-b" id="prev">&larr; Back</button>
+              <button type="button" class="ctrl-b" id="next">Next &rarr;</button>
+            </div>
+          </div>
+
+          <div class="read">
+            <div class="top">
+              <span class="pill" id="pill">Link up</span>
+              <span class="sig" title="Received optical power"><b id="sigbar"></b></span>
+            </div>
+            <div class="row2">
+              <canvas id="plot" width="236" height="236" aria-label="Where the light lands versus where the fibre tip is"></canvas>
+              <div class="cap"><span class="d"></span> where B&rsquo;s light lands<br><span class="r"></span> where A&rsquo;s fibre tip is<br>Ring on dot = linked. The circle is the fibre core.</div>
+            </div>
+            <div class="vid">
+              <div class="t"><span>Screen at B</span><span id="vidState">Live</span></div>
+              <canvas id="vid" width="320" height="180" aria-label="Simulated video feed received at terminal B"></canvas>
+            </div>
+          </div>
+
+          <div class="ctrl">
+            <button type="button" class="loop big" id="loop" aria-pressed="true">XY Lab correction: on</button>
+            <label for="sway">Building sway</label>
+            <input type="range" id="sway" min="0" max="100" value="30">
+            <div class="row" style="margin-top:12px">
+              <button type="button" id="bump">Bump the mount</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ WHAT SITS WHERE ════════ -->
+  <section id="parts">
+    <div class="wrap two">
+      <div class="panel reveal">
+        <span class="key" style="background:var(--s-yellow)"></span>
+        <div class="eyebrow"><span>Inside terminal A</span><span class="rev">What moves</span></div>
+        <h2>One fibre tip on the stage. Nothing else.</h2>
+        <ol class="parts">
+          <li><span class="n">01</span><span><b>Fibre-network transceiver (SFP).</b> A mass-produced plug-in module with its own laser and light detector, made for fibre-optic networks. It stays on the fixed frame.</span></li>
+          <li><span class="n">02</span><span><b>Media converter.</b> Turns the SFP into an ordinary Ethernet port, so a camera, a Raspberry Pi or a laptop plugs straight in.</span></li>
+          <li><span class="n">03</span><span><b>Optical fibre.</b> A short patch cord from the SFP. Its free end is the only thing on the stage &mdash; it weighs a few grams.</span></li>
+          <li><span class="n">04</span><span><b>XY Lab stage.</b> Holds the fibre tip and moves it sideways and up-down in steps of tens of nanometres. No sliding parts: the printed flexures bend.</span></li>
+          <li><span class="n">05</span><span><b>Lens.</b> Fixed one focal length in front of the tip. It turns the light from the tip into a straight beam, and focuses the incoming beam back to a point.</span></li>
+        </ol>
+      </div>
+
+      <div class="panel reveal">
+        <span class="key" style="background:var(--s-blue)"></span>
+        <div class="eyebrow"><span>Two colours, one path</span><span class="rev">Full duplex</span></div>
+        <h2>Both ends talk and listen at the same time.</h2>
+        <div class="copy">
+          <p>The link uses a matched pair of <i>BiDi</i> transceivers. Each sends on one wavelength and listens on the other, through a single fibre. A tiny filter inside the module keeps the outgoing and incoming colours apart.</p>
+          <p>So the two directions share one beam, travelling opposite ways at once &mdash; like a two-lane road, not a walkie-talkie. The video only goes from A to B, but the network needs the return lane to confirm the link is alive.</p>
+          <p>And because light retraces its path, the stage only has to do one thing: put A&rsquo;s fibre tip exactly where B&rsquo;s light lands. A&rsquo;s own beam then points straight back at B.</p>
+        </div>
+        <div class="wave"><span class="a">1310 nm &middot; A &rarr; B</span><span class="b">1550 nm &middot; B &rarr; A</span></div>
+        <p class="copy" style="font-size:13.5px;font-style:italic;color:var(--ink-soft)">Both wavelengths are invisible infrared; the colours here are for explanation only.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ NUMBERS + LIMITS ════════ -->
+  <section id="numbers">
+    <div class="wrap two">
+      <div class="panel reveal">
+        <span class="key" style="background:var(--ink)"></span>
+        <div class="eyebrow"><span>The numbers</span><span class="rev">Design targets, 100 mm lens</span></div>
+        <h2>Why a nanometre stage, for a kilometre link.</h2>
+        <table class="nums">
+          <thead><tr><th>Quantity</th><th>Value</th><th>At 1 km</th></tr></thead>
+          <tbody>
+            <tr><td>Single-mode fibre core</td><td class="v">&asymp; 9 &micro;m</td><td>the target the light must hit</td></tr>
+            <tr><td>Pointing tolerance (core &divide; focal length)</td><td class="v">&plusmn; 45 &micro;rad</td><td>&asymp; &plusmn; 4.5 cm</td></tr>
+            <tr><td>Smallest XY Lab increment, resolved optically</td><td class="v">&lt; 20 nm</td><td>&asymp; 0.2 mm of beam movement</td></tr>
+            <tr><td>XY Lab travel, about 3 &times; 3 mm</td><td class="v">&plusmn; 15 mrad</td><td>&asymp; &plusmn; 15 m of correction</td></tr>
+            <tr><td>Light travel time</td><td class="v">3.3 &micro;s</td><td>the link adds almost no delay</td></tr>
+            <tr><td>Correction speed (geared motors)</td><td class="v">up to &asymp; 20 Hz</td><td>drift, sway and bumps</td></tr>
+          </tbody>
+        </table>
+        <p class="copy" style="font-size:13.5px;font-style:italic;color:var(--ink-soft)">Stage figures are measured on XY Lab; link figures are calculated targets for a design that has not yet been built.</p>
+      </div>
+
+      <div class="panel reveal">
+        <span class="key" style="background:var(--accent)"></span>
+        <div class="eyebrow"><span>Honest limits</span><span class="rev">What it won&rsquo;t do</span></div>
+        <h2>Where the idea stops.</h2>
+        <ul class="limits">
+          <li><b>It is a concept.</b> The stage exists and is measured; the kilometre link is the goal we are building towards, starting at tens of metres.</li>
+          <li><b>Slow disturbances only.</b> The stage corrects drift, sway and bumps up to about 20 Hz. The fast shimmer of hot air over a kilometre is faster than that and is not corrected.</li>
+          <li><b>Weather wins.</b> Fog and heavy rain block every laser link. A radio link as backup covers those hours.</li>
+          <li><b>The fixed end must stay still.</b> For long rooftop links, the second terminal gets its own stage too.</li>
+          <li><b>Eye safety first.</b> Low power, beams above head height and away from flight paths.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ CONTACT ════════ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="panel reveal">
+        <span class="key" style="background:var(--ink)"></span>
+        <div class="eyebrow"><span>Fiction to reality</span><span class="rev">Replies from a human</span></div>
+        <h2>Want a link like this, or a stage to try it?</h2>
+        <div class="copy"><p>Write to us about campus or rural links, research collaborations, or building your own terminal on an XY Lab stage.</p></div>
+        <div class="cta">
+          <a class="btn" href="mailto:atharvdubey.nj@gmail.com?subject=F2R%20laser%20link">Get in touch &rarr;</a>
+          <a class="btn ghost" href="./shop.html">The XY Lab stage &middot; &#8377;2,500</a>
+        </div>
+        <div class="adbar">
+          <span class="lockup"><span class="cbar" aria-hidden="true"></span>F&sup2;R&nbsp;fiction&nbsp;to&nbsp;reality</span>
+          <div class="dist">F&sup2;R instrumentation<br>atharvdubey.nj@gmail.com<br>Application &middot; Laser link</div>
+        </div>
+        <p class="fineprint">&copy; 2026 F&sup2;R &mdash; Fiction to Reality. The 3D scene is an illustration: distances, beam widths and angles are exaggerated so the mechanism can be seen. Beam colours are false colour.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  'use strict';
+
+  /* ════════ panels rise in, as on the other pages ════════ */
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0.08});
+    els.forEach(function(el){ io.observe(el); });
+  } else els.forEach(function(el){ el.classList.add('in'); });
+
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ════════ steps ════════ */
+  var STEPS = [
+    {tag:'The idea', title:'Two roofs, one invisible beam', view:'overview', loop:true, sway:30,
+     text:'A camera on one roof, a screen on another, up to a kilometre apart. No cable runs between them &mdash; just a narrow beam of infrared light carrying the video.'},
+    {tag:'Full duplex', title:'Two colours, both ways at once', view:'beam', loop:true, sway:20,
+     text:'Terminal A sends at 1310&nbsp;nm; terminal B answers at 1550&nbsp;nm. Both travel the same path in opposite directions at the same moment, like a two-lane road. Shown in false colour: both are invisible.'},
+    {tag:'Inside A', title:'One fibre tip is lamp and eye', view:'termA', loop:true, sway:15,
+     text:'A fibre-network transceiver sends and receives through one optical fibre. Its end sits on the XY Lab stage, one focal length behind a lens. A&rsquo;s light leaves through that tip, and B&rsquo;s light must land back on it &mdash; a target about 9&nbsp;&micro;m wide.'},
+    {tag:'The problem', title:'Then the building moves', view:'overview', loop:false, sway:85,
+     text:'Roofs sway, mounts warm and sag. A tilt of a few thousandths of a degree slides B&rsquo;s focused light off the fibre tip, and A&rsquo;s beam misses B by metres. Watch the plot and the screen: the link drops.'},
+    {tag:'The fix', title:'XY Lab moves the tip to the light', view:'termA', loop:true, sway:85,
+     text:'The stage reads the received power and nudges the fibre tip a few micrometres until the signal peaks. Because light retraces its path, the same nudge aims A&rsquo;s beam straight back at B: one correction fixes both directions.'},
+    {tag:'Your turn', title:'Try to break the link', view:'overview', loop:true, sway:50,
+     text:'Switch the correction off and on, turn up the sway, or bump the mount. A hard bump can blip the link for a moment &mdash; then the stage pulls it back.'}
+  ];
+  var step = 0;
+  var stepNo = document.getElementById('stepNo'), stepTag = document.getElementById('stepTag'),
+      stepTitle = document.getElementById('stepTitle'), stepText = document.getElementById('stepText'),
+      dotsEl = document.getElementById('dots'), prevB = document.getElementById('prev'), nextB = document.getElementById('next');
+  STEPS.forEach(function(){ dotsEl.appendChild(document.createElement('i')); });
+
+  /* ════════ controls ════════ */
+  var loopB = document.getElementById('loop'), swayR = document.getElementById('sway'), bumpB = document.getElementById('bump');
+  var state = {loop:true, sway:0.3, bumpT:-99, t:0};
+  function setLoop(on){
+    state.loop = on;
+    loopB.setAttribute('aria-pressed', on ? 'true' : 'false');
+    loopB.textContent = 'XY Lab correction: ' + (on ? 'on' : 'off');
+  }
+  function setSway(v){ swayR.value = v; state.sway = v / 100; }
+  loopB.addEventListener('click', function(){ setLoop(!state.loop); });
+  swayR.addEventListener('input', function(){ state.sway = swayR.value / 100; });
+  bumpB.addEventListener('click', function(){ state.bumpT = state.t; });
+
+  var viewBtns = document.querySelectorAll('[data-view]');
+  var goView = function(){};   /* replaced once the scene exists */
+  viewBtns.forEach(function(b){ b.addEventListener('click', function(){ goView(b.getAttribute('data-view')); }); });
+  function markView(name){
+    viewBtns.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-view') === name ? 'true' : 'false'); });
+  }
+
+  function showStep(i){
+    step = Math.max(0, Math.min(STEPS.length - 1, i));
+    var s = STEPS[step];
+    stepNo.textContent = 'Step ' + (step + 1) + ' of ' + STEPS.length;
+    stepTag.textContent = s.tag;
+    stepTitle.textContent = s.title;
+    stepText.innerHTML = s.text;
+    dotsEl.querySelectorAll('i').forEach(function(d, k){ d.className = k <= step ? 'on' : ''; });
+    prevB.disabled = step === 0;
+    nextB.textContent = step === STEPS.length - 1 ? 'Start again ↺' : 'Next →';
+    setLoop(s.loop); setSway(s.sway);
+    goView(s.view);
+  }
+  prevB.addEventListener('click', function(){ showStep(step - 1); });
+  nextB.addEventListener('click', function(){ showStep(step === STEPS.length - 1 ? 0 : step + 1); });
+
+  /* ════════ readouts ════════ */
+  var pill = document.getElementById('pill'), sigbar = document.getElementById('sigbar'), vidState = document.getElementById('vidState');
+  var plot = document.getElementById('plot'), pctx = plot.getContext('2d');
+  var vid = document.getElementById('vid'), vctx = vid.getContext('2d');
+
+  /* ════════ the scene ════════ */
+  var vp = document.getElementById('vp'), labelsEl = document.getElementById('labels');
+  function webgl(){
+    try { var c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl'))); }
+    catch (e){ return false; }
+  }
+  var has3D = !!window.THREE && webgl();
+  if (!has3D) document.getElementById('fallback').style.display = 'flex';
+
+  /* optical model, in scene units (exaggerated so it can be seen) */
+  var F = 2.0;          /* lens focal length                          */
+  var LX = 1.4;         /* lens position along the terminal axis      */
+  var R_LENS = 0.5;     /* lens radius                                */
+  var SIGMA = 0.012;    /* fibre-coupling width                       */
+  var TRAVEL = 0.3;     /* stage travel, each way                     */
+  var TAU = 0.05;       /* stage response time when correcting (s)    */
+  var THRESH = 0.06;    /* received fraction needed for link up       */
+
+  var p = {y:0, z:0};   /* A's fibre tip on the stage (local units)   */
+  var sp = {y:0, z:0};  /* where B's light focuses at A               */
+  var linkP = 1, linkUp = true, downFor = 0;
+
+  if (has3D) build3D();
+  else { goView = function(n){ markView(n); }; startTextOnly(); }
+
+  showStep(0);
+
+  /* ───────────────────────────────────────────────────────── */
+  function build3D(){
+    var T = THREE;
+    var INK = 0x0E0E0E, PAPER = 0xFCFBF7, PLA = 0xEFEBE0, PLA2 = 0xF8F5EC, METAL = 0xC3C7CD,
+        DARK = 0x2a2a2a, TXC = 0xF5821F, RXC = 0x009DDC, FIBRE = 0xFDB827, GLASS = 0xBFE3EF;
+
+    var renderer = new T.WebGLRenderer({antialias:true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setClearColor(PAPER, 1);
+    vp.insertBefore(renderer.domElement, labelsEl);
+    renderer.domElement.setAttribute('aria-label', 'Interactive 3D illustration of a self-aligning laser link between two rooftops');
+    renderer.domElement.setAttribute('role', 'img');
+
+    var scene = new T.Scene();
+    scene.fog = new T.Fog(PAPER, 70, 150);
+    var camera = new T.PerspectiveCamera(38, 1, 0.03, 400);
+
+    scene.add(new T.HemisphereLight(0xffffff, 0xd9d4c6, 0.95));
+    var sun = new T.DirectionalLight(0xffffff, 0.6); sun.position.set(12, 24, 16); scene.add(sun);
+
+    function mat(c, o){ return new T.MeshStandardMaterial(Object.assign({color:c, roughness:0.85, metalness:0.05}, o || {})); }
+    function edged(mesh, op){
+      mesh.add(new T.LineSegments(new T.EdgesGeometry(mesh.geometry, 20),
+        new T.LineBasicMaterial({color:INK, transparent:true, opacity:op == null ? 0.9 : op})));
+      return mesh;
+    }
+    function box(w, h, d, m, x, y, z, op){
+      var b = edged(new T.Mesh(new T.BoxGeometry(w, h, d), m), op); b.position.set(x || 0, y || 0, z || 0); return b;
+    }
+
+    /* ground: the print bed */
+    var ground = new T.Mesh(new T.PlaneGeometry(400, 200), new T.MeshBasicMaterial({color:PAPER}));
+    ground.rotation.x = -Math.PI / 2; scene.add(ground);
+    var grid = new T.GridHelper(240, 120, 0xB4B9C1, 0xD8DBE0);
+    grid.material.transparent = true; grid.material.opacity = 0.7; grid.position.y = 0.002; scene.add(grid);
+
+    /* buildings */
+    var BH = 6;
+    function building(x){
+      var g = new T.Group();
+      g.add(box(6, BH, 6, mat(0xF3F1EA), x, BH / 2, 0, 0.8));
+      var pts = [];
+      for (var f = 1; f < 4; f++){ var y = f * BH / 4; pts.push(x - 3, y, 3.001, x + 3, y, 3.001); }
+      var lg = new T.BufferGeometry(); lg.setAttribute('position', new T.Float32BufferAttribute(pts, 3));
+      g.add(new T.LineSegments(lg, new T.LineBasicMaterial({color:INK, transparent:true, opacity:0.25})));
+      scene.add(g);
+    }
+    building(-22); building(22);
+
+    /* distance marker: dimension line with a break */
+    (function(){
+      var y = BH + 0.02, pts = [-18.5, y, 2.6, -1.2, y, 2.6, 1.2, y, 2.6, 18.5, y, 2.6,
+                                 -18.5, y, 2.2, -18.5, y, 3.0, 18.5, y, 2.2, 18.5, y, 3.0,
+                                 -1.5, y, 2.25, -0.9, y, 2.95, 0.9, y, 2.25, 1.5, y, 2.95];
+      var g = new T.BufferGeometry(); g.setAttribute('position', new T.Float32BufferAttribute(pts, 3));
+      var dim = new T.LineSegments(g, new T.LineBasicMaterial({color:INK}));
+      dim.position.y = -BH + 0.01;   /* lay it on the ground between the buildings */
+      scene.add(dim);
+    })();
+
+    /* ── a terminal ── */
+    var MAST = 1.6, PIVOT_Y = BH + MAST;
+    function terminal(mx, active){
+      var base = new T.Group(); base.position.set(mx, BH, 0);
+      if (mx > 0) base.rotation.y = Math.PI;      /* B faces back towards A */
+      scene.add(base);
+      var mast = edged(new T.Mesh(new T.CylinderGeometry(0.09, 0.12, MAST - 1.1, 14), mat(0x8d9096)), 0.6);
+      mast.position.y = (MAST - 1.1) / 2; base.add(mast);
+      base.add(box(0.9, 0.08, 0.9, mat(0x8d9096), 0, 0.04, 0, 0.6));
+
+      var mount = new T.Group(); mount.position.y = MAST; base.add(mount);
+      mount.add(box(0.35, 0.3, 0.35, mat(0x8d9096), 0, -0.95, 0, 0.6));        /* yoke */
+
+      /* open housing: edges only, so the inside can be seen */
+      var hg = new T.BoxGeometry(3.3, 1.6, 1.6);
+      var hl = new T.LineSegments(new T.EdgesGeometry(hg), new T.LineBasicMaterial({color:INK, transparent:true, opacity:0.55}));
+      hl.position.x = -0.1; mount.add(hl);
+      mount.add(box(3.3, 0.05, 1.6, mat(0xD9D5CA), -0.1, -0.8, 0, 0.7));         /* floor */
+      mount.add(box(0.05, 1.6, 1.6, mat(0xD9D5CA, {transparent:true, opacity:0.55}), -1.75, 0, 0, 0.7)); /* back */
+
+      /* lens */
+      var lens = new T.Mesh(new T.CylinderGeometry(R_LENS, R_LENS, 0.07, 48),
+        new T.MeshStandardMaterial({color:GLASS, transparent:true, opacity:0.45, roughness:0.1, metalness:0.1}));
+      lens.rotation.z = Math.PI / 2; lens.position.x = LX; mount.add(lens);
+      var ring = new T.Mesh(new T.TorusGeometry(R_LENS + 0.03, 0.035, 8, 48), mat(INK));
+      ring.rotation.y = Math.PI / 2; ring.position.x = LX; mount.add(ring);
+
+      /* transceiver + converter on the fixed frame */
+      mount.add(box(0.55, 0.22, 0.5, mat(DARK), -1.35, -0.66, 0.42, 0.9));         /* media converter */
+      mount.add(box(0.36, 0.09, 0.14, mat(METAL, {metalness:0.5, roughness:0.4}), -0.95, -0.66, 0.42, 0.9)); /* SFP */
+
+      var t = {base:base, mount:mount, active:active};
+      var X0 = -0.95;                                 /* stage plane */
+      var tipX = LX - F;                              /* focal plane */
+      var plat = new T.Group(); mount.add(plat);
+      if (active){
+        /* XY Lab: a printed square frame, a platform on flexures, two motors */
+        var pm = mat(PLA);
+        mount.add(box(0.1, 0.2, 1.24, pm, X0, 0.52, 0, 0.8));
+        mount.add(box(0.1, 0.2, 1.24, pm, X0, -0.52, 0, 0.8));
+        mount.add(box(0.1, 0.84, 0.2, pm, X0, 0, -0.52, 0.8));
+        mount.add(box(0.1, 0.84, 0.2, pm, X0, 0, 0.52, 0.8));
+        plat.add(box(0.1, 0.34, 0.34, mat(PLA2), X0, 0, 0, 0.9));
+        var motorM = mat(METAL, {metalness:0.45, roughness:0.45});
+        var m1 = edged(new T.Mesh(new T.CylinderGeometry(0.15, 0.15, 0.2, 24), motorM), 0.7);
+        m1.position.set(X0 - 0.12, 0.74, 0); mount.add(m1);
+        mount.add(box(0.1, 0.1, 0.14, mat(0x2F6FB0), X0 - 0.12, 0.74, 0.19, 0.6));
+        var m2 = edged(new T.Mesh(new T.CylinderGeometry(0.15, 0.15, 0.2, 24), motorM), 0.7);
+        m2.rotation.x = Math.PI / 2; m2.position.set(X0 - 0.12, 0, 0.74); mount.add(m2);
+        mount.add(box(0.1, 0.14, 0.1, mat(0x2F6FB0), X0 - 0.12, -0.19, 0.74, 0.6));
+        /* flexure blades: redrawn every frame so they visibly bend */
+        var fg = new T.BufferGeometry(); fg.setAttribute('position', new T.Float32BufferAttribute(new Float32Array(16 * 3), 3));
+        t.flex = new T.LineSegments(fg, new T.LineBasicMaterial({color:INK})); mount.add(t.flex);
+        t.X0 = X0;
+      } else {
+        mount.add(box(0.14, 0.3, 0.3, mat(0x8d9096), tipX - 0.37, 0, 0, 0.8));    /* fixed fibre holder */
+      }
+      /* ferrule + tip */
+      var fer = edged(new T.Mesh(new T.CylinderGeometry(0.03, 0.03, tipX - X0 - 0.05, 14), mat(0xEDEDED)), 0.6);
+      fer.rotation.z = Math.PI / 2; fer.position.x = (tipX + X0 + 0.05) / 2; plat.add(fer);
+      /* A sends 1310 nm and receives 1550 nm; B does the opposite */
+      var own = active ? TXC : RXC, other = active ? RXC : TXC;
+      t.tipGlow = new T.Mesh(new T.SphereGeometry(0.04, 16, 12), new T.MeshBasicMaterial({color:own}));
+      t.tipGlow.position.x = tipX; plat.add(t.tipGlow);
+      t.plat = plat; t.tipX = tipX;
+
+      /* fibre patch cord: yellow, redrawn as the tip moves */
+      t.fibreMat = new T.MeshStandardMaterial({color:FIBRE, roughness:0.6});
+      t.fibre = null;
+
+      /* rays inside the housing */
+      function rays(color, op){
+        var g = new T.BufferGeometry(); g.setAttribute('position', new T.Float32BufferAttribute(new Float32Array(12 * 2 * 3), 3));
+        var l = new T.LineSegments(g, new T.LineBasicMaterial({color:color, transparent:true, opacity:op}));
+        mount.add(l); return l;
+      }
+      t.raysIn = rays(other, 0.75);
+      t.raysOut = rays(own, 0.75);
+      t.spot = new T.Mesh(new T.SphereGeometry(0.03, 16, 12), new T.MeshBasicMaterial({color:other}));
+      mount.add(t.spot);
+      return t;
+    }
+
+    var A = terminal(-20, true);
+    var B = terminal(20, false);
+
+    /* camera at A, screen at B */
+    var camBody = box(0.42, 0.3, 0.3, mat(DARK), -21.7, BH + 0.32, 1.6, 0.9); scene.add(camBody);
+    var camLens = edged(new T.Mesh(new T.CylinderGeometry(0.1, 0.1, 0.16, 18), mat(0x111111)), 0.9);
+    camLens.rotation.x = Math.PI / 2; camLens.position.set(-21.7, BH + 0.32, 1.83); scene.add(camLens);
+    scene.add(box(0.05, 0.17, 0.05, mat(0x8d9096), -21.7, BH + 0.085, 1.6, 0.6));
+    var vtex = new T.CanvasTexture(vid);
+    var screen = new T.Mesh(new T.PlaneGeometry(1.6, 0.9), new T.MeshBasicMaterial({map:vtex}));
+    screen.position.set(21.5, BH + 0.82, 1.7); scene.add(screen);
+    scene.add(box(1.7, 1.0, 0.06, mat(DARK), 21.5, BH + 0.82, 1.66, 0.9));
+    scene.add(box(0.08, 0.32, 0.08, mat(DARK), 21.5, BH + 0.16, 1.62, 0.9));
+    function cable(a, b){
+      var g = new T.BufferGeometry().setFromPoints([a, new T.Vector3(a.x, BH + 0.03, a.z), new T.Vector3(b.x, BH + 0.03, b.z), b]);
+      scene.add(new T.Line(g, new T.LineBasicMaterial({color:0x555555})));
+    }
+    cable(new T.Vector3(-21.7, BH + 0.2, 1.45), new T.Vector3(-20, BH + 0.05, 0.2));
+    cable(new T.Vector3(21.5, BH + 0.05, 1.6), new T.Vector3(20, BH + 0.05, 0.2));
+
+    /* ── beams ── */
+    function beamMesh(r, color, op, order){
+      var m = new T.Mesh(new T.CylinderGeometry(r, r, 1, 10, 1, true),
+        new T.MeshBasicMaterial({color:color, transparent:true, opacity:op, depthWrite:false}));
+      m.renderOrder = order; scene.add(m); return m;
+    }
+    var beamIn = beamMesh(0.075, RXC, 0.3, 1);    /* 1550 nm, B → A: the wide pale lane */
+    var beamOut = beamMesh(0.035, TXC, 0.95, 2);  /* 1310 nm, A → B: the narrow core   */
+    var UP = new T.Vector3(0, 1, 0);
+    function placeBeam(m, from, to){
+      var d = to.clone().sub(from), len = d.length();
+      m.position.copy(from).addScaledVector(d, 0.5);
+      m.quaternion.setFromUnitVectors(UP, d.normalize());
+      m.scale.set(1, len, 1);
+    }
+    /* data pulses */
+    var rnd = (function(){ var s = 7; return function(){ s = (s * 16807) % 2147483647; return s / 2147483647; }; })();
+    function pulses(color, r){
+      var arr = [];
+      for (var i = 0; i < 22; i++){
+        var m = new T.Mesh(new T.CylinderGeometry(r, r, 1, 8), new T.MeshBasicMaterial({color:color, transparent:true, opacity:1}));
+        m.renderOrder = 3;
+        m.userData.len = 0.25 + rnd() * 0.55; m.userData.on = rnd() > 0.22;
+        scene.add(m); arr.push(m);
+      }
+      return arr;
+    }
+    var pOut = pulses(TXC, 0.06), pIn = pulses(RXC, 0.08);
+    var PULSE_GAP = 2.4, PULSE_SPEED = 20, phase = 0;
+    function placePulses(arr, from, dir, length, ph){
+      var cycle = arr.length * PULSE_GAP;
+      for (var i = 0; i < arr.length; i++){
+        var m = arr[i], d = (ph + i * PULSE_GAP) % cycle;
+        if (!m.userData.on || d > length - 0.2){ m.visible = false; continue; }
+        m.visible = true;
+        m.position.copy(from).addScaledVector(dir, d);
+        m.quaternion.setFromUnitVectors(UP, dir);
+        m.scale.set(1, m.userData.len, 1);
+      }
+    }
+
+    /* ── labels ── */
+    var LBL = [];
+    function label(text, cls, views, fn){
+      var el = document.createElement('div'); el.className = 'lbl ' + (cls || ''); el.textContent = text;
+      labelsEl.appendChild(el); LBL.push({el:el, views:views, fn:fn});
+    }
+    var tmp = new T.Vector3();
+    function lp(term, x, y, z){ return function(){ return term.mount.localToWorld(tmp.set(x, y, z)); }; }
+    function wp(x, y, z){ var v = new T.Vector3(x, y, z); return function(){ return v; }; }
+    label('Terminal A · self-aligning', '', ['overview'], lp(A, 0, 1.25, 0));
+    label('Terminal B · fixed', '', ['overview'], lp(B, 0, 1.25, 0));
+    label('≈ 1 km · not to scale', '', ['overview'], wp(0, 0.6, 2.6));
+    label('Camera', '', ['overview'], wp(-21.7, BH + 0.75, 1.6));
+    label('Screen', '', ['overview'], wp(21.5, BH + 1.55, 1.7));
+    label('1310 nm · A → B', 'tx', ['beam'], wp(-7, PIVOT_Y + 0.45, 0));
+    label('1550 nm · B → A', 'rx', ['beam'], wp(1.5, PIVOT_Y - 0.3, 0));
+    label('XY Lab stage', '', ['termA'], lp(A, -0.95, 0.95, -0.45));
+    label('Fibre tip', 'tx', ['termA'], function(){ return A.mount.localToWorld(tmp.set(A.tipX, p.y + 0.12, p.z)); });
+    label('Lens', '', ['termA', 'termB'], function(){ return (view === 'termB' ? B : A).mount.localToWorld(tmp.set(LX, R_LENS + 0.12, 0)); });
+    label('BiDi SFP', '', ['termA'], lp(A, -0.9, -0.5, 0.48));
+    label('Fixed fibre tip', '', ['termB'], lp(B, LX - F, 0.22, 0));
+
+    /* ── camera views + simple orbit ── */
+    var VIEWS = {
+      overview:{pos:[0, 27, 57], tgt:[0, 5.4, 0]},
+      beam:    {pos:[-11.5, 9.0, 6.6], tgt:[-3.5, 7.6, 0]},
+      termA:   {pos:[-18.35, 8.85, 4.3], tgt:[-20.0, 7.5, 0]},
+      termB:   {pos:[23.2, 8.9, 6.4], tgt:[20.3, 7.2, 0.6]}
+    };
+    var view = 'overview', userMoved = false;
+    var tgt = new T.Vector3().fromArray(VIEWS.overview.tgt);
+    var tween = null;
+    function framed(name){
+      var v = VIEWS[name], t = new T.Vector3().fromArray(v.tgt), pp = new T.Vector3().fromArray(v.pos);
+      var k = Math.max(1, 1.05 / Math.max(0.3, camera.aspect));
+      return {pos:t.clone().add(pp.sub(t).multiplyScalar(k)), tgt:t};
+    }
+    goView = function(name){
+      if (!VIEWS[name]) return;
+      view = name; markView(name); userMoved = false;
+      var to = framed(name);
+      if (reduced){ camera.position.copy(to.pos); tgt.copy(to.tgt); tween = null; return; }
+      tween = {t:0, p0:camera.position.clone(), t0:tgt.clone(), p1:to.pos, t1:to.tgt};
+    };
+    function ease(x){ return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+
+    var cv = renderer.domElement, drag = null;
+    cv.addEventListener('pointerdown', function(e){
+      drag = {x:e.clientX, y:e.clientY, id:e.pointerId, touch:e.pointerType === 'touch'}; tween = null; userMoved = true;
+      if (!drag.touch) cv.setPointerCapture(e.pointerId);
+    });
+    window.addEventListener('pointerup', function(){ drag = null; });
+    window.addEventListener('pointercancel', function(){ drag = null; });
+    cv.addEventListener('pointermove', function(e){
+      if (!drag || e.pointerId !== drag.id) return;
+      var dx = e.clientX - drag.x, dy = drag.touch ? 0 : e.clientY - drag.y;   /* touch: vertical swipes scroll the page */
+      drag.x = e.clientX; drag.y = e.clientY;
+      var off = camera.position.clone().sub(tgt), sph = new T.Spherical().setFromVector3(off);
+      sph.theta -= dx * 0.006; sph.phi = Math.max(0.15, Math.min(1.5, sph.phi - dy * 0.005));
+      off.setFromSpherical(sph); camera.position.copy(tgt).add(off);
+    });
+    cv.addEventListener('wheel', function(e){
+      e.preventDefault(); tween = null; userMoved = true;
+      var off = camera.position.clone().sub(tgt), r = off.length() * Math.exp(e.deltaY * 0.0012);
+      r = Math.max(1.2, Math.min(90, r)); camera.position.copy(tgt).add(off.setLength(r));
+    }, {passive:false});
+
+    /* ── size + visibility ── */
+    function resize(){
+      var w = vp.clientWidth, h = vp.clientHeight;
+      if (!w || !h) return;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.fov = w < 560 ? 48 : 44;
+      camera.updateProjectionMatrix();
+      var f = framed(view);
+      if (tween){ tween.p1 = f.pos; tween.t1 = f.tgt; }
+      else if (!userMoved){ camera.position.copy(f.pos); tgt.copy(f.tgt); }
+    }
+    resize();
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(vp); else window.addEventListener('resize', resize);
+    var visible = true;
+    if ('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ visible = es[0].isIntersecting; if (visible) kick(); }, {threshold:0}).observe(vp);
+    }
+    document.addEventListener('visibilitychange', kick);
+
+    /* ── fixed geometry used each frame ── */
+    var B_LENS = new T.Vector3(), A_LENS = new T.Vector3(), A_NOM = new T.Vector3(-20 + LX, PIVOT_Y, 0);
+    scene.updateMatrixWorld(true);
+    B.mount.localToWorld(B_LENS.set(LX, 0, 0));
+    var qInv = new T.Quaternion(), u = new T.Vector3(), dir = new T.Vector3(), hit = new T.Vector3(), endP = new T.Vector3();
+    var rimA = [];
+    for (var k = 0; k < 12; k++){ var th = k / 12 * Math.PI * 2; rimA.push([Math.cos(th) * 0.42, Math.sin(th) * 0.42]); }
+
+    function setRays(lines, y, z){
+      var a = lines.geometry.attributes.position.array, i = 0;
+      for (var k = 0; k < 12; k++){
+        a[i++] = LX; a[i++] = rimA[k][0]; a[i++] = rimA[k][1];
+        a[i++] = LX - F; a[i++] = y; a[i++] = z;
+      }
+      lines.geometry.attributes.position.needsUpdate = true;
+    }
+    function setFlex(t, y, z){
+      var a = t.flex.geometry.attributes.position.array, x = t.X0, i = 0, h = 0.17, fi = 0.42, w = 0.1;
+      function seg(x1, y1, z1, y2, z2){ a[i++] = x; a[i++] = y1; a[i++] = z1; a[i++] = x; a[i++] = y2; a[i++] = z2; }
+      seg(x, y + h, z - w, fi, -w); seg(x, y + h, z + w, fi, w);
+      seg(x, y - h, z - w, -fi, -w); seg(x, y - h, z + w, -fi, w);
+      seg(x, y - w, z + h, -w, fi); seg(x, y + w, z + h, w, fi);
+      seg(x, y - w, z - h, -w, -fi); seg(x, y + w, z - h, w, -fi);
+      t.flex.geometry.attributes.position.needsUpdate = true;
+    }
+    function setFibre(t, y, z){
+      var x0 = t.active ? t.X0 - 0.06 : t.tipX - 0.45;
+      var c = new T.CatmullRomCurve3([
+        new T.Vector3(x0, y, z), new T.Vector3(x0 - 0.3, y * 0.6 - 0.1, z * 0.6 + 0.12),
+        new T.Vector3(-1.5, -0.3, 0.55), new T.Vector3(-1.1, -0.6, 0.62), new T.Vector3(-0.77, -0.66, 0.42)]);
+      if (t.fibre){ t.mount.remove(t.fibre); t.fibre.geometry.dispose(); }
+      t.fibre = new T.Mesh(new T.TubeGeometry(c, 30, 0.018, 6, false), t.fibreMat);
+      t.mount.add(t.fibre);
+    }
+    setFibre(B, 0, 0);
+    setRays(B.raysIn, 0, 0); setRays(B.raysOut, 0, 0); B.spot.position.set(LX - F, 0, 0);
+
+    /* ── main loop ── */
+    var last = performance.now(), raf = 0, lastFibre = {y:9, z:9};
+    function kick(){ if (!raf && visible && !document.hidden){ last = performance.now(); raf = requestAnimationFrame(frame); } }
+
+    function frame(now){
+      raf = 0;
+      var dt = Math.min(0.05, (now - last) / 1000); last = now;
+      state.t += dt;
+      var t = state.t;
+
+      /* disturbance: slow sway plus a ringing bump */
+      var yaw = state.sway * 0.06 * (0.65 * Math.sin(0.7 * t) + 0.35 * Math.sin(1.6 * t + 1));
+      var pit = state.sway * 0.035 * (0.6 * Math.sin(0.55 * t + 0.5) + 0.4 * Math.sin(1.3 * t + 2));
+      var tb = t - state.bumpT;
+      if (tb >= 0 && tb < 5){
+        var env = Math.exp(-tb / 0.7);
+        yaw += 0.1 * env * Math.cos(2 * Math.PI * 1.3 * tb);
+        pit += 0.045 * env * Math.sin(2 * Math.PI * 1.7 * tb);
+      }
+      A.mount.rotation.set(0, yaw, pit);
+      A.mount.updateMatrixWorld(true);
+
+      /* where B's light focuses inside A */
+      A.mount.localToWorld(A_LENS.set(LX, 0, 0));
+      qInv.copy(A.mount.getWorldQuaternion(new T.Quaternion())).conjugate();
+      u.copy(B_LENS).sub(A_LENS).normalize().applyQuaternion(qInv);
+      sp.y = -F * u.y / u.x; sp.z = -F * u.z / u.x;
+
+      /* the stage chases the light when correction is on */
+      if (state.loop){
+        var k = 1 - Math.exp(-dt / TAU);
+        p.y += (sp.y - p.y) * k; p.z += (sp.z - p.z) * k;
+        p.y = Math.max(-TRAVEL, Math.min(TRAVEL, p.y)); p.z = Math.max(-TRAVEL, Math.min(TRAVEL, p.z));
+      }
+      A.plat.position.set(0, p.y, p.z);
+      setFlex(A, p.y, p.z);
+      if (Math.abs(p.y - lastFibre.y) + Math.abs(p.z - lastFibre.z) > 0.002){ setFibre(A, p.y, p.z); lastFibre.y = p.y; lastFibre.z = p.z; }
+      setRays(A.raysIn, sp.y, sp.z); A.spot.position.set(LX - F, sp.y, sp.z);
+      setRays(A.raysOut, p.y, p.z);
+
+      /* A's outgoing beam: from the tip, through the lens centre */
+      dir.set(F, -p.y, -p.z).normalize().applyQuaternion(A.mount.getWorldQuaternion(new T.Quaternion()));
+      var tt = (B_LENS.x - A_LENS.x) / dir.x;
+      hit.copy(A_LENS).addScaledVector(dir, tt);
+      var miss = Math.hypot(hit.y - B_LENS.y, hit.z - B_LENS.z);
+      var hits = miss < R_LENS;
+      endP.copy(A_LENS).addScaledVector(dir, hits ? tt : tt + 45);
+      placeBeam(beamOut, A_LENS, endP);
+      placeBeam(beamIn, B_LENS, A_LENS);
+
+      var err = Math.hypot(p.y - sp.y, p.z - sp.z);
+      linkP = hits ? Math.exp(-err * err / (2 * SIGMA * SIGMA)) : 0;
+      var up = linkP > THRESH;
+      downFor = up ? 0 : downFor + dt;
+      linkUp = up || downFor < 0.12;
+
+      phase += PULSE_SPEED * dt;
+      placePulses(pOut, A_LENS, dir, hits ? tt : tt + 45, phase);
+      placePulses(pIn, B_LENS, dir.copy(A_LENS).sub(B_LENS).normalize(), B_LENS.distanceTo(A_LENS), phase * 1.07 + 1.3);
+
+      /* camera */
+      if (tween){
+        tween.t = Math.min(1, tween.t + dt / 1.4);
+        var e = ease(tween.t);
+        camera.position.lerpVectors(tween.p0, tween.p1, e);
+        tgt.lerpVectors(tween.t0, tween.t1, e);
+        if (tween.t >= 1) tween = null;
+      }
+      camera.lookAt(tgt);
+
+      renderer.render(scene, camera);
+      drawLabels();
+      drawReadouts(t);
+      vtex.needsUpdate = true;
+      kick();
+    }
+
+    var v3 = new T.Vector3();
+    function drawLabels(){
+      var w = vp.clientWidth, h = vp.clientHeight;
+      for (var i = 0; i < LBL.length; i++){
+        var L = LBL[i], show = L.views.indexOf(view) >= 0;
+        if (show){
+          v3.copy(L.fn()).project(camera);
+          show = v3.z < 1 && Math.abs(v3.x) < 1.05 && Math.abs(v3.y) < 1.05;
+          if (show) L.el.style.transform = 'translate(' + ((v3.x + 1) / 2 * w) + 'px,' + ((1 - v3.y) / 2 * h) + 'px) translate(-50%,-100%)';
+        }
+        L.el.classList.toggle('hide', !show);
+      }
+    }
+    kick();
+  }
+
+  /* without WebGL: keep the model and readouts alive so the steps still teach */
+  function startTextOnly(){
+    var last = performance.now();
+    function tick(now){
+      var dt = Math.min(0.05, (now - last) / 1000); last = now; state.t += dt;
+      var t = state.t;
+      var yaw = state.sway * 0.06 * (0.65 * Math.sin(0.7 * t) + 0.35 * Math.sin(1.6 * t + 1));
+      var pit = state.sway * 0.035 * (0.6 * Math.sin(0.55 * t + 0.5) + 0.4 * Math.sin(1.3 * t + 2));
+      var tb = t - state.bumpT;
+      if (tb >= 0 && tb < 5){ var env = Math.exp(-tb / 0.7); yaw += 0.1 * env * Math.cos(8.17 * tb); pit += 0.045 * env * Math.sin(10.7 * tb); }
+      sp.y = -F * Math.tan(pit); sp.z = F * Math.tan(yaw);
+      if (state.loop){ var k = 1 - Math.exp(-dt / TAU); p.y += (sp.y - p.y) * k; p.z += (sp.z - p.z) * k; }
+      var err = Math.hypot(p.y - sp.y, p.z - sp.z);
+      linkP = Math.exp(-err * err / (2 * SIGMA * SIGMA));
+      var up = linkP > THRESH; downFor = up ? 0 : downFor + dt; linkUp = up || downFor < 0.12;
+      drawReadouts(t);
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  /* ════════ readouts: link pill, signal, plot, video ════════ */
+  var frozen = false, wasUp = true;
+  function drawReadouts(t){
+    if (linkUp !== wasUp){
+      pill.textContent = linkUp ? 'Link up' : 'Link down';
+      pill.classList.toggle('down', !linkUp);
+      vidState.textContent = linkUp ? 'Live' : 'No signal';
+      wasUp = linkUp;
+    }
+    sigbar.style.width = Math.round(Math.max(0, Math.min(1, linkP)) * 100) + '%';
+    sigbar.style.background = linkUp ? 'var(--ink)' : 'var(--s-red)';
+
+    /* plot: magnified view of A's focal plane */
+    var W = plot.width, c = W / 2, sc = (W * 0.42) / 0.16;
+    pctx.clearRect(0, 0, W, W);
+    pctx.strokeStyle = 'rgba(14,14,14,.18)'; pctx.lineWidth = 1;
+    pctx.beginPath(); pctx.moveTo(c, 6); pctx.lineTo(c, W - 6); pctx.moveTo(6, c); pctx.lineTo(W - 6, c); pctx.stroke();
+    var px = c + p.z * sc, py = c - p.y * sc, sx = c + sp.z * sc, sy = c - sp.y * sc;
+    var core = 2.37 * SIGMA * sc;
+    pctx.setLineDash([3, 3]); pctx.strokeStyle = 'rgba(14,14,14,.55)';
+    pctx.beginPath(); pctx.arc(px, py, core, 0, Math.PI * 2); pctx.stroke(); pctx.setLineDash([]);
+    pctx.fillStyle = '#009DDC';
+    pctx.beginPath(); pctx.arc(Math.max(6, Math.min(W - 6, sx)), Math.max(6, Math.min(W - 6, sy)), 7, 0, Math.PI * 2); pctx.fill();
+    pctx.strokeStyle = '#F5821F'; pctx.lineWidth = 4;
+    pctx.beginPath(); pctx.arc(px, py, 10, 0, Math.PI * 2); pctx.stroke();
+
+    /* video: a live test pattern, frozen when the link drops */
+    var VW = vid.width, VH = vid.height;
+    if (linkUp){
+      frozen = false;
+      var cols = ['#61BB46','#FDB827','#F5821F','#00A0B0','#E03A3E','#963D97','#009DDC'];
+      vctx.fillStyle = '#111'; vctx.fillRect(0, 0, VW, VH);
+      var bw = VW / 7, off = (t * 40) % bw;
+      for (var i = -1; i < 8; i++){ vctx.fillStyle = cols[(i + 7) % 7]; vctx.fillRect(i * bw + off, 0, bw + 1, VH * 0.62); }
+      var bx = (Math.sin(t * 1.3) * 0.5 + 0.5) * (VW - 40) + 20, by = VH * 0.31 + Math.sin(t * 2.1) * VH * 0.18;
+      vctx.fillStyle = '#FCFBF7'; vctx.beginPath(); vctx.arc(bx, by, 14, 0, Math.PI * 2); vctx.fill();
+      vctx.fillStyle = '#111'; vctx.fillRect(0, VH * 0.62, VW, VH * 0.38);
+      vctx.fillStyle = '#FCFBF7'; vctx.font = '600 15px "IBM Plex Mono", monospace';
+      var s = t.toFixed(2); vctx.fillText('CAM A  →  B   ' + ('00000' + s).slice(-6) + ' s', 12, VH * 0.84);
+    } else if (!frozen){
+      frozen = true;
+      vctx.fillStyle = 'rgba(14,14,14,.62)'; vctx.fillRect(0, 0, VW, VH);
+      for (var n = 0; n < 900; n++){ vctx.fillStyle = Math.random() > 0.5 ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.35)'; vctx.fillRect(Math.random() * VW, Math.random() * VH, 2, 2); }
+      vctx.fillStyle = '#E03A3E'; vctx.fillRect(VW / 2 - 92, VH / 2 - 20, 184, 40);
+      vctx.fillStyle = '#fff'; vctx.font = '600 18px "IBM Plex Mono", monospace'; vctx.textAlign = 'center';
+      vctx.fillText('NO SIGNAL', VW / 2, VH / 2 + 6); vctx.textAlign = 'left';
+    }
+  }
+})();
+</script>
+</body>
+</html>
