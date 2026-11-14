@@ -1259,6 +1259,15 @@ const POS = new Float32Array(Q.length);
 for (let i=0;i<Q.length;i++){ const a = i%3; POS[i] = G_LO[a] + (Q[i]/65535)*G_RNG[a]; }
 const WX = new Float32Array(WXB.length), WZ = new Float32Array(WZB.length);
 for (let i=0;i<WXB.length;i++){ WX[i] = WXB[i]/255; WZ[i] = WZB[i]/255; }
+/* Each nut housing is a rigid block that travels along its own lead screw.
+   The baked weights leave the Y housing (and the bore rims of the X one) on
+   the frame, so pin both housings to their axis here.                     */
+for (let v=0;v<WX.length;v++){
+  const x = POS[v*3], y = POS[v*3+1], z = POS[v*3+2];
+  if (y < 9 || y > 26) continue;
+  if (z > 5 && z < 9.6 && x > -11.6 && x < 0.6) WZ[v] = 1;
+  if (x > 24.4 && x < 29.2 && z > -32 && z < -20) WX[v] = 1;
+}
 
 /* datum outline = only the edges that actually move */
 const gh = [];
@@ -2338,12 +2347,13 @@ const WIRES = [0x2C6FB7, 0xE58FB0, 0xF2C230, 0xF5821F, 0xD23A3A].map(c => hwMat(
 
 const AX_Y = 17.78;                       /* height of both lead-screw axes */
 /* s0: where the coupler cap starts along each axis; everything a drive
-   needs is placed relative to it, so X and Y are built by one routine.   */
+   needs is placed relative to it, so X and Y are built by one routine.
+   nut: centre of the printed nut pocket along the axis.                  */
 const DRIVE = {
   z:{dir:new THREE.Vector3(0,0,1), s0:16.2, rotY:0,          at:s => new THREE.Vector3(-6.58, AX_Y, s),
-     side:d => new THREE.Vector3(-6.57 + d, 25.65, 0), tag:'Z', mount:34.29},
+     side:d => new THREE.Vector3(-6.57 + d, 25.65, 0), tag:'Z', mount:34.29, nut:7.32},
   x:{dir:new THREE.Vector3(1,0,0), s0:32.5, rotY:Math.PI/2,  at:s => new THREE.Vector3(s, AX_Y, -26.38),
-     side:d => new THREE.Vector3(0, 25.65, -26.37 + d), tag:'X', mount:51.83}
+     side:d => new THREE.Vector3(0, 25.65, -26.37 + d), tag:'X', mount:51.83, nut:26.8}
 };
 const PARTS = [];
 function addPart(kind, d, obj, home, centre){
@@ -2392,7 +2402,9 @@ Object.keys(DRIVE).forEach(k => {
   addPart('washer', k, ws, D.at(D.s0 - 0.27), D.at(D.s0 - 0.27));
   /* M3 nut, captured in the moving carriage */
   const nt = turn(mkRing(hexOutline, 1.5, 2.4, M_BRASS));
-  addPart('nut', k, nt, D.at(tip + 3.4), D.at(tip + 3.4));
+  /* seated in the housing pocket on the lead screw; it is trapped there, so
+     it rides with the housing when the flexure moves */
+  addPart('nut', k, nt, D.at(D.nut), D.at(D.nut)).ride = 1;
   /* two M3 screws through the motor tabs into the standoffs */
   [-17.5, 17.5].forEach(sd => {
     const sc = turn(mkScrew(16)), h = D.side(sd).addScaledVector(D.dir, D.mount - 19);
@@ -2450,6 +2462,7 @@ function updateAsm(dt, printing){
     const p = PARTS[i]; asmPose(p, Math.max(0, asmT));
     p.a += (p.ta-p.a)*kk; p.y += (p.ty-p.y)*kk; p.s += (p.ts-p.s)*kk;
     p.obj.position.copy(p.home).addScaledVector(DRIVE[p.d].dir, p.a); p.obj.position.y += p.y;
+    if (p.ride){ if (p.d === 'x') p.obj.position.x += uMove.value.x*p.ride; else p.obj.position.z += uMove.value.z*p.ride; }
     if (p.spin) p.spin.rotation.z = p.s;
   }
   /* the body goes translucent while parts are going inside it */
