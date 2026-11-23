@@ -61,6 +61,10 @@ a:hover{background:var(--accent);color:#fff;border-color:transparent;}
 #scene{position:fixed;inset:0;z-index:1;display:block;width:100%;height:100%;
   cursor:grab;touch-action:pan-y;}
 #scene.dragging{cursor:grabbing;}
+/* The scrolling chapters sit above the canvas. Let pointers fall through the
+   empty parts so drag-to-orbit reaches the scene; the panels stay interactive. */
+#content{pointer-events:none;}
+#content .panel{pointer-events:auto;}
 #veil{position:fixed;inset:0;z-index:2;pointer-events:none;
   background:radial-gradient(122% 92% at 50% 42%,transparent 54%,rgba(0,0,0,0.14) 100%);}
 
